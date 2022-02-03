@@ -5,10 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionUtil {
-    /*public static Connection getConnection() throws SQLException{
-        String url = System.getenv();
-        String user = System.getenv();
-        String pass = System.getenv();
-        return DriverManager.getConnection(url,user,pass);
-    }*/
+    public static Connection getConnection() throws SQLException {
+        String url = "jdbc:postgresql://34.69.253.208:5432/postgres";
+        String user = "postgres";
+        String pass = "postgres";
+        return DriverManager.getConnection(url, user, pass);
+    }
 }
