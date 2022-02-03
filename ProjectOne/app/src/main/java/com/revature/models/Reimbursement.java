@@ -14,6 +14,18 @@ public class Reimbursement {
 
     public Reimbursement() {}
 
+    public Reimbursement(int id, float amount, Date submitted, Date resolved, int author, int resolver, int statusId,
+                         int typeId) {
+        this.id = id;
+        this.amount = amount;
+        this.submitted = submitted;
+        this.resolved = resolved;
+        this.author = author;
+        this.resolver = resolver;
+        this.statusId = statusId;
+        this.typeId = typeId;
+    }
+
     public int getId() {
         return id;
     }
