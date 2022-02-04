@@ -1,12 +1,0 @@
-
-X
-java:S2094	"BRemove this empty class, write its code or make it an "interface".(„ÇÏ‘
-P	java:S125"<This block of commented-out lines of code should be removed.(Â“≠v
-H
-java:S1128"3Remove this unused import 'java.io.BufferedWriter'.(¨ı∫/
-J
-java:S1128"/Remove this unused import 'java.io.FileWriter'.(√ë≈√˝ˇˇˇˇ
-K
-java:S1128"0Remove this unused import 'java.io.IOException'.(™∫ª⁄˝ˇˇˇˇ
-O
-java:S1128"4Remove this unused import 'java.time.LocalDateTime'.(Ê√ßÉ¸ˇˇˇˇ
