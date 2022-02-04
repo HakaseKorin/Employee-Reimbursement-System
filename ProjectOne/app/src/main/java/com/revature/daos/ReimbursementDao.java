@@ -8,4 +8,7 @@ import java.util.List;
 public interface ReimbursementDao {
 
     List<Reimbursement> getAll();
+    List<Reimbursement> getAllPending();
+    List<Reimbursement> getAllResolved();
+    Reimbursement  getById(int id);
 }
