@@ -26,4 +26,12 @@ public class ReimbursementType {
     public void setType(String type) {
         Type = type;
     }
+
+    @Override
+    public String toString() {
+        return "ReimbursementType{" +
+                "id=" + id +
+                ", Type='" + Type + '\'' +
+                '}';
+    }
 }
