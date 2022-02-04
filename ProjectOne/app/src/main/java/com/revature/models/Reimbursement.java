@@ -9,6 +9,7 @@ public class Reimbursement {
     private float amount;
     private LocalDateTime submitted;
     private LocalDateTime resolved;
+    private String description;
     private int author;
     private int resolver;
     private int statusId;
@@ -16,12 +17,12 @@ public class Reimbursement {
 
     public Reimbursement() {}
 
-    public Reimbursement(int id, float amount, LocalDateTime submitted, LocalDateTime resolved, int author, int resolver, int statusId,
-                         int typeId) {
+    public Reimbursement(int id, float amount, LocalDateTime submitted, LocalDateTime resolved, String description, int author, int resolver, int statusId, int typeId) {
         this.id = id;
         this.amount = amount;
         this.submitted = submitted;
         this.resolved = resolved;
+        this.description = description;
         this.author = author;
         this.resolver = resolver;
         this.statusId = statusId;
@@ -58,6 +59,14 @@ public class Reimbursement {
 
     public void setResolved(LocalDateTime resolved) {
         this.resolved = resolved;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getAuthor() {
