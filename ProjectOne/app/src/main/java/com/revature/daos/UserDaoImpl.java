@@ -24,19 +24,21 @@ public class UserDaoImpl implements UserDao {
 
             ResultSet rs = s.executeQuery(sql);
 
-            User user = new User();
-            int id = rs.getInt("id");
-            user.setId(id);
+            while (rs.next()) {
+                User user = new User();
+                int id = rs.getInt("id");
+                user.setId(id);
 
-            user.setId(rs.getInt(1));
-            user.setUsername(rs.getString(2));
-            user.setPassword(rs.getString(3));
-            user.setFirstName(rs.getString(4));
-            user.setLastName(rs.getString(5));
-            user.setEmail(rs.getString(6));
-            user.setRoleId(rs.getInt(7));
+                user.setId(rs.getInt(1));
+                user.setUsername(rs.getString(2));
+                user.setPassword(rs.getString(3));
+                user.setFirstName(rs.getString(4));
+                user.setLastName(rs.getString(5));
+                user.setEmail(rs.getString(6));
+                user.setRoleId(rs.getInt(7));
 
-            users.add(user);
+                users.add(user);
+            }
 
         }catch (SQLException e){
             e.printStackTrace();
