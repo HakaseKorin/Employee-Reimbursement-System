@@ -13,7 +13,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
 
-        String sql = "select * from ers_users";
+        String sql = "select * from ers_users;";
         List<User>users = new ArrayList<>();
 
         try(Connection c = ConnectionUtil.getConnection();
