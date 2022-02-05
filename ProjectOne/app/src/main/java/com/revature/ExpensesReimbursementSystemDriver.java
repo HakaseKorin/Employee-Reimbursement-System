@@ -14,7 +14,7 @@ public class ExpensesReimbursementSystemDriver {
         app.get("/",ctx -> ctx.result("Hello World"));
 
         UserService userService = new UserService();
-        app.get("/users",ctx -> {
+        app.get("/reimbursement",ctx -> {
             List<User> users = userService.getAllUsers();
             ctx.json(users);
         });

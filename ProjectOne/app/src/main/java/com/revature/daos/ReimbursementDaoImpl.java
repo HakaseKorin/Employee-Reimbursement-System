@@ -12,8 +12,6 @@ import java.util.List;
 
 public class ReimbursementDaoImpl implements ReimbursementDao{
 
-    ReimbursementService rs = new ReimbursementService();
-
     @Override
     public List<Reimbursement> getAll() {
         String sql = "select * from ers_reimbursement;";

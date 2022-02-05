@@ -12,8 +12,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-
-        String sql = "select * from ers_users;";
+        String sql = "select * from ers_user;";
         List<User>users = new ArrayList<>();
 
         try(Connection c = ConnectionUtil.getConnection();
@@ -47,7 +46,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(int id) {
-        String sql = "select from ers_users where user id = ? ";
+        String sql = "select from ers_user where user id = ? ";
 
         try(Connection c = ConnectionUtil.getConnection();
             PreparedStatement ps = c.prepareStatement(sql);) {
@@ -79,7 +78,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean updateUser(User u) {
-        String sql = "select ers_users set username = ?, password = ?, firstName = ?, lastName = ?, email = ?, roleId = ? where id = ?";
+        String sql = "select ers_user set username = ?, password = ?, firstName = ?, lastName = ?, email = ?, roleId = ? where id = ?";
 
         try(Connection c = ConnectionUtil.getConnection();
             PreparedStatement ps = c.prepareStatement(sql);) {
