@@ -12,7 +12,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
     @Override
     public List<Reimbursement> getAll() {
-        String sql = "select * from ers_reimbursement;";
+        String sql = "select * from \"ProjectOne\".ers_reimbursement;";
         List<Reimbursement> list = new ArrayList<>();
 
         try(Connection c = ConnectionUtil.getConnection();
@@ -43,7 +43,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
     @Override
     public List<Reimbursement> getAllPending() {
-        String sql = "select * from ers_reimbursement where reimb_status_id = 1;";
+        String sql = "select * from \"ProjectOne\".ers_reimbursement where reimb_status_id = 1;";
         List<Reimbursement> list = new ArrayList<>();
 
         try(Connection c = ConnectionUtil.getConnection();
@@ -74,7 +74,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
     @Override
     public List<Reimbursement> getAllResolved() {
-        String sql = "select * from ers_reimbursement reimb_status_id = 2;";
+        String sql = "select * from \"ProjectOne\".ers_reimbursement where reimb_status_id = 2";
         List<Reimbursement> list = new ArrayList<>();
 
         try(Connection c = ConnectionUtil.getConnection();
@@ -105,7 +105,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
     @Override
     public Reimbursement getById(int id) {
-        String sql = "select * from ers_reimbursement where reimb_id = ?";
+        String sql = "select * from ProjectOne.ers_reimbursement where reimb_id = ?";
 
         try(Connection c = ConnectionUtil.getConnection();
             PreparedStatement ps = c.prepareStatement(sql)){
