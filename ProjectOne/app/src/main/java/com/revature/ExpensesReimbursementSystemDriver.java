@@ -9,14 +9,17 @@ import java.util.List;
 public class ExpensesReimbursementSystemDriver {
 
     public static void main(String[] args){
+
         Javalin app = Javalin.create().start();
 
         app.get("/",ctx -> ctx.result("Hello World"));
 
         UserService userService = new UserService();
-        app.get("/reimbursement",ctx -> {
+        app.get("/users",ctx -> {
             List<User> users = userService.getAllUsers();
             ctx.json(users);
+
+
         });
     }
 
