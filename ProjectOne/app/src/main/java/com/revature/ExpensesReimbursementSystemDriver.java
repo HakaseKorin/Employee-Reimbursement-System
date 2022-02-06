@@ -1,7 +1,7 @@
 package com.revature;
 
 import com.revature.models.User;
-import com.revature.services.UserService;
+import com.revature.models.services.UserService;
 import io.javalin.Javalin;
 
 import java.util.List;

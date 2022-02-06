@@ -1,4 +1,4 @@
-package com.revature.services;
+package com.revature.models.services;
 
 import com.revature.daos.ReimbursementDao;
 import com.revature.daos.ReimbursementDaoImpl;

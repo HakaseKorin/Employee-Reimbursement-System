@@ -1,17 +1,11 @@
 package com.revature.services;
 
-import com.revature.daos.ReimbursementDao;
 import com.revature.models.Reimbursement;
+import com.revature.models.services.ReimbursementService;
 import junit.framework.TestCase;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
 
 import java.time.LocalDateTime;
-
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatcher.*;
-import static org.mockito.Mockito.*;
 
 public class ReimbursementServiceTest extends TestCase {
 
