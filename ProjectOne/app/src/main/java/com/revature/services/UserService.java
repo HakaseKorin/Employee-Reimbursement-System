@@ -1,4 +1,4 @@
-package com.revature.models.services;
+package com.revature.services;
 
 import com.revature.daos.UserDao;
 import com.revature.daos.UserDaoImpl;

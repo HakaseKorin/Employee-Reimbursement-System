@@ -1,7 +1,6 @@
 package com.revature.services;
 
 import com.revature.models.Reimbursement;
-import com.revature.models.services.ReimbursementService;
 import junit.framework.TestCase;
 import org.junit.Test;
 
