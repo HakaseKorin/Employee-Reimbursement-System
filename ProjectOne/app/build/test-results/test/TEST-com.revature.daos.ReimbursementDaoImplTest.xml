@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.revature.daos.ReimbursementDaoImplTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-02-06T18:01:32" hostname="HAKASE-KO" time="0.449">
+  <properties/>
+  <testcase name="testGetAll" classname="com.revature.daos.ReimbursementDaoImplTest" time="0.449"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
