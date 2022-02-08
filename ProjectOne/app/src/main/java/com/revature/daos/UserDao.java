@@ -10,4 +10,5 @@ public interface UserDao {
     public User getUserById(int id);
     public boolean updateUser(User u);
 
+    public boolean createUser();
 }

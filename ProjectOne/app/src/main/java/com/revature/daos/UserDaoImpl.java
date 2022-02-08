@@ -104,4 +104,9 @@ public class UserDaoImpl implements UserDao {
 
         return false;
     }
+
+    @Override
+    public boolean createUser() {
+        return false;
+    }
 }

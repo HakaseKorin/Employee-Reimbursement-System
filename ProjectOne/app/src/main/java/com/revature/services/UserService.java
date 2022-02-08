@@ -27,4 +27,5 @@ public class UserService {
         return userDao.updateUser(u);
     }
 
+    public boolean createUser(User newUser) { return userDao.createUser ();}
 }
