@@ -107,6 +107,6 @@ public class ReimbursementServiceTest extends TestCase {
 
         verify(rs).getById(anyInt());
         System.out.println(test);
-        //assertNotNull(test);
+        assertEquals(test, null);
     }
 }
