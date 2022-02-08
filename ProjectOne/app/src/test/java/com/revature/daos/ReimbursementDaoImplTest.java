@@ -18,6 +18,9 @@ import static org.mockito.Mockito.*;
 
 public class ReimbursementDaoImplTest extends TestCase {
 
+    @Mock
+    static ReimbursementDao rd;
+    
     @Test
     public void testGetAll() {
         //create a list to get the return object from the mock
@@ -25,8 +28,6 @@ public class ReimbursementDaoImplTest extends TestCase {
         ReimbursementService rs = new ReimbursementService();
         //Mock the class we're testing that requires db connection
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
-        //Instance of the class we're testing
-        ReimbursementDao reDao = new ReimbursementDaoImpl();
 
         Reimbursement r = rs.createReimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
@@ -34,7 +35,7 @@ public class ReimbursementDaoImplTest extends TestCase {
                 "",3, 4, 5, 0);
         list.add(r);
 
-        List<Reimbursement> test = reDao.getAll();
+        List<Reimbursement> test = rd.getAll();
         //when it calls the function we're testing it returns the expected return type
         when(rd.getAll()).thenReturn(list);
         //makes sure that the test object has something;
@@ -48,15 +49,13 @@ public class ReimbursementDaoImplTest extends TestCase {
 
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
 
-        ReimbursementDao reDao = new ReimbursementDaoImpl();
-
         Reimbursement r = rs.createReimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
                 LocalDateTime.of(2022, 2,5, 0, 0),
                 "",3, 4, 5, 0);
         list.add(r);
 
-        List<Reimbursement> test = reDao.getAllPending();
+        List<Reimbursement> test = rd.getAllPending();
 
         when(rd.getAllPending()).thenReturn(list);
 
@@ -70,18 +69,16 @@ public class ReimbursementDaoImplTest extends TestCase {
 
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
 
-        ReimbursementDao reDao = new ReimbursementDaoImpl();
-
         Reimbursement r = rs.createReimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
                 LocalDateTime.of(2022, 2,5, 0, 0),
                 "",3, 4, 5, 0);
         list.add(r);
 
-        List<Reimbursement> test = reDao.getAllResolved();
+        List<Reimbursement> test = rd.getAllResolved();
 
         when(rd.getAllResolved()).thenReturn(list);
-
+        System.out.println(test);
         assertNotNull(test);
     }
 
@@ -90,16 +87,51 @@ public class ReimbursementDaoImplTest extends TestCase {
         ReimbursementService rs = new ReimbursementService();
 
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementDao testDao = new ReimbursementDaoImpl();
 
         Reimbursement r = rs.createReimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
                 LocalDateTime.of(2022, 2,5, 0, 0),
                 "",3, 4, 5, 0);
 
-        rd.getById(1);
+        Reimbursement test = testDao.getById(1);
 
         when(rd.getById(anyInt())).thenReturn(r);
+        System.out.println(test);
+        assertNotNull(test);
+    }
 
-        assertNotNull(r);
+    @Test
+    public void testCreate() {
+        ReimbursementService rs = new ReimbursementService();
+
+        ReimbursementDao rd = Mockito.mock(ReimbursementDaoImpl.class);
+
+        Reimbursement r = rs.createReimbursement(1, 10.00f,
+                LocalDateTime.of(2022, 2, 4, 0, 0),
+                LocalDateTime.of(2022, 2,5, 0, 0),
+                "",1, 2, 1, 1);
+
+        boolean result = rd.create(r);
+
+        doNothing().when(rd.create(any()));
+        //when(rd.create(any().)).thenReturn(true);
+        verify(rd).create(any());
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void testUpdate() {
+        ReimbursementService rs = new ReimbursementService();
+
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementDao testDao = new ReimbursementDaoImpl();
+
+        boolean result = testDao.update(new Reimbursement());
+
+        when(rd.update(any())).thenReturn(true);
+
+        assertTrue(result);
     }
 }

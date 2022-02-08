@@ -19,6 +19,10 @@ public class ReimbursementService {
         return reimbursement;
     }
 
+    public boolean create(Reimbursement reimbursement){ return rd.create(reimbursement);}
+
+    public boolean update(Reimbursement reimbursement){ return rd.update(reimbursement);}
+
     public List<Reimbursement> getAll(){ return rd.getAll();}
 
     public List<Reimbursement> getAllPending(){ return rd.getAllPending();}
