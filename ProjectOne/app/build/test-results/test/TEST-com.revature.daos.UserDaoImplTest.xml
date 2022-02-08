@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.revature.daos.UserDaoImplTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2022-02-08T21:21:32" hostname="HAKASE-KO" time="0.478">
+<testsuite name="com.revature.daos.UserDaoImplTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2022-02-08T21:30:55" hostname="HAKASE-KO" time="0.496">
   <properties/>
-  <testcase name="testGetAllUsers" classname="com.revature.daos.UserDaoImplTest" time="0.478">
+  <testcase name="testGetAllUsers" classname="com.revature.daos.UserDaoImplTest" time="0.496">
     <failure message="java.lang.AssertionError" type="java.lang.AssertionError">java.lang.AssertionError
 	at org.junit.Assert.fail(Assert.java:87)
 	at org.junit.Assert.assertTrue(Assert.java:42)
