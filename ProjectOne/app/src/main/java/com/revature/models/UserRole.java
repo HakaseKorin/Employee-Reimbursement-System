@@ -1,5 +1,6 @@
 package com.revature.models;
 
+@Deprecated
 public class UserRole {
     private int id;
     private String role;

@@ -21,7 +21,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.*;
 
 public class ReimbursementServiceTest extends TestCase {
-
+/*
     public void testCreateReimbursement() {
         ReimbursementService rs = new ReimbursementService();
 
@@ -32,6 +32,7 @@ public class ReimbursementServiceTest extends TestCase {
 
         assertNotNull(test);
     }
+    */
 
     public void testCreate() {
     }

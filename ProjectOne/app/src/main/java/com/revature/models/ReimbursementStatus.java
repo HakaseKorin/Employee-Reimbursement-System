@@ -1,5 +1,6 @@
 package com.revature.models;
 
+@Deprecated
 public class ReimbursementStatus {
     private int id;
     private String status;

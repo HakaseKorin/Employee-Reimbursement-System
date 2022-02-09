@@ -1,5 +1,6 @@
 package com.revature.models;
 
+@Deprecated
 public class ReimbursementType {
     private int id;
     private String Type;
