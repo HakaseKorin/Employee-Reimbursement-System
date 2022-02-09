@@ -62,6 +62,18 @@ public class UserDaoImplTest extends TestCase {
         assertNotNull(user);
 
     }
+    @Test
+    public void testCreateUser(){
+        UserService us = new UserService();
+
+        UserDao userDao = mock(UserDaoImpl.class);
+        User user = us.createUser(1,"JohnDoe", "password", "John", "Doe", "JohnDoe@email.com", 1 );
+        userDao.createUser(user);
+
+        when(userDao.createUser(user)).thenReturn(true);
+
+        assertNotNull(user);
+    }
 
 
 }

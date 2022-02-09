@@ -12,7 +12,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        String sql = "select * \"ProjectOne\".from ers_user;";
+        String sql = "select * from \"ProjectOne\".ers_user;";
         List<User>users = new ArrayList<>();
 
         try(Connection c = ConnectionUtil.getConnection();
@@ -22,8 +22,6 @@ public class UserDaoImpl implements UserDao {
 
             while (rs.next()) {
                 User user = new User();
-                int id = rs.getInt("id");
-                user.setId(id);
 
                 user.setId(rs.getInt(1));
                 user.setUsername(rs.getString(2));
@@ -35,6 +33,7 @@ public class UserDaoImpl implements UserDao {
 
                 users.add(user);
             }
+            return users;
 
         }catch (SQLException e){
             e.printStackTrace();
@@ -46,7 +45,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUserById(int id) {
-        String sql = "select from \"ProjectOne\".ers_user where user id = ? ";
+        String sql = "select * from \"ProjectOne\".ers_user where ers_users_id = ? ";
 
         try(Connection c = ConnectionUtil.getConnection();
             PreparedStatement ps = c.prepareStatement(sql);) {
@@ -78,18 +77,19 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean updateUser(User u) {
-        String sql = "select \"ProjectOne\".ers_user set username = ?, password = ?, firstName = ?, lastName = ?, email = ?, roleId = ? where id = ?";
+        String sql = "update \"ProjectOne\".ers_user set ers_username = ?, ers_password =?, user_first_name =?, " +
+                "user_last_name = ?, user_email = ?, user_role_id = ? where ers_users_id = ?";
 
         try(Connection c = ConnectionUtil.getConnection();
             PreparedStatement ps = c.prepareStatement(sql);) {
 
-            ps.setInt(1, u.getId());
-            ps.setString(2, u.getUsername());
-            ps.setString(3, u.getPassword());
-            ps.setString(4,u.getFirstName());
-            ps.setString(5,u.getLastName());
-            ps.setString(6,u.getEmail());
-            ps.setInt(7,u.getRoleId());
+            ps.setString(1, u.getUsername());
+            ps.setString(2, u.getPassword());
+            ps.setString(3,u.getFirstName());
+            ps.setString(4,u.getLastName());
+            ps.setString(5,u.getEmail());
+            ps.setInt(6,u.getRoleId());
+            ps.setInt(7, u.getRoleId());
 
             int rowAffected = ps.executeUpdate();
 
@@ -105,8 +105,35 @@ public class UserDaoImpl implements UserDao {
         return false;
     }
 
+
     @Override
-    public boolean createUser() {
+    public boolean createUser(User u) {
+
+        String sql = "insert into \"ProjectOne\".ers_user (ers_users_id, ers_username, ers_password, user_first_name, user_last_name, " +
+                     "user_email, user_role_id) values (?, ?, ?, ?, ?, ?, ?)";
+
+        try(Connection c = ConnectionUtil.getConnection();
+            PreparedStatement ps = c.prepareStatement(sql);) {
+
+            ps.setInt(1, u.getId());
+            ps.setString(2, u.getUsername());
+            ps.setString(3, u.getPassword());
+            ps.setString(4, u.getFirstName());
+            ps.setString(5, u.getLastName());
+            ps.setString(6, u.getEmail());
+            ps.setInt(7, u.getRoleId());
+
+            int rowAffected = ps.executeUpdate();
+
+            if(rowAffected==1){
+                return true;
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+
+        }
+
         return false;
     }
 }
