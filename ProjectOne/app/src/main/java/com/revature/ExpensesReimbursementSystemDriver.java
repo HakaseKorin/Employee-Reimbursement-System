@@ -78,7 +78,22 @@ public class ExpensesReimbursementSystemDriver {
                    ctx.status(400);
                }
 
-            } );
+            });
+
+            app.post("/login", ctx -> {
+                String username = ctx.formParam("username");
+                String passwrod = ctx.formParam("password");
+                User success = userService.getUserByUsernameAndPassword(username, passwrod);
+                ctx.json(success);
+
+                if(success== null) {
+                    ctx.status(200);
+                }else {
+                    ctx.status(401);
+                }
+
+            });
+
 
     }
 

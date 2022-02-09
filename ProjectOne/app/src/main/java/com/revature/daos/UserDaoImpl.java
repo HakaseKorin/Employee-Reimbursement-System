@@ -13,10 +13,10 @@ public class UserDaoImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         String sql = "select * from \"ProjectOne\".ers_user;";
-        List<User>users = new ArrayList<>();
+        List<User> users = new ArrayList<>();
 
-        try(Connection c = ConnectionUtil.getConnection();
-            Statement s = c.createStatement();) {
+        try (Connection c = ConnectionUtil.getConnection();
+             Statement s = c.createStatement();) {
 
             ResultSet rs = s.executeQuery(sql);
 
@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
             }
             return users;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
 
         }
@@ -47,13 +47,13 @@ public class UserDaoImpl implements UserDao {
     public User getUserById(int id) {
         String sql = "select * from \"ProjectOne\".ers_user where ers_users_id = ? ";
 
-        try(Connection c = ConnectionUtil.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);) {
+        try (Connection c = ConnectionUtil.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);) {
 
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
-            if(rs.next()) {
+            if (rs.next()) {
                 User user = new User();
                 user.setId(id);
 
@@ -68,7 +68,7 @@ public class UserDaoImpl implements UserDao {
                 return user;
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -80,25 +80,25 @@ public class UserDaoImpl implements UserDao {
         String sql = "update \"ProjectOne\".ers_user set ers_username = ?, ers_password =?, user_first_name =?, " +
                 "user_last_name = ?, user_email = ?, user_role_id = ? where ers_users_id = ?";
 
-        try(Connection c = ConnectionUtil.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);) {
+        try (Connection c = ConnectionUtil.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);) {
 
             ps.setString(1, u.getUsername());
             ps.setString(2, u.getPassword());
-            ps.setString(3,u.getFirstName());
-            ps.setString(4,u.getLastName());
-            ps.setString(5,u.getEmail());
-            ps.setInt(6,u.getRoleId());
+            ps.setString(3, u.getFirstName());
+            ps.setString(4, u.getLastName());
+            ps.setString(5, u.getEmail());
+            ps.setInt(6, u.getRoleId());
             ps.setInt(7, u.getRoleId());
 
             int rowAffected = ps.executeUpdate();
 
-            if(rowAffected==1){
+            if (rowAffected == 1) {
                 return true;
 
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
@@ -110,10 +110,10 @@ public class UserDaoImpl implements UserDao {
     public boolean createUser(User u) {
 
         String sql = "insert into \"ProjectOne\".ers_user (ers_users_id, ers_username, ers_password, user_first_name, user_last_name, " +
-                     "user_email, user_role_id) values (?, ?, ?, ?, ?, ?, ?)";
+                "user_email, user_role_id) values (?, ?, ?, ?, ?, ?, ?)";
 
-        try(Connection c = ConnectionUtil.getConnection();
-            PreparedStatement ps = c.prepareStatement(sql);) {
+        try (Connection c = ConnectionUtil.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);) {
 
             ps.setInt(1, u.getId());
             ps.setString(2, u.getUsername());
@@ -125,15 +125,51 @@ public class UserDaoImpl implements UserDao {
 
             int rowAffected = ps.executeUpdate();
 
-            if(rowAffected==1){
+            if (rowAffected == 1) {
                 return true;
             }
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
 
         }
 
         return false;
+    }
+
+    @Override
+    public User getUserByUsernameAndPassword(String username, String password) {
+
+        String sql = "select *from \"ProjectOne\".ers_user where ers_username = ? and ers_password = ?";
+
+        try (Connection c = ConnectionUtil.getConnection();
+             PreparedStatement ps = c.prepareStatement(sql);) {
+
+            ps.setString(1, username);
+            ps.setString(2, password);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                User user = new User();
+
+                user.setId(rs.getInt(1));
+                user.setUsername(rs.getString(2));
+                user.setPassword(rs.getString(3));
+                user.setFirstName(rs.getString(4));
+                user.setLastName(rs.getString(5));
+                user.setEmail(rs.getString(6));
+                user.setRoleId(rs.getInt(7));
+
+                return user;
+
+            }
+
+        }catch(SQLException e){
+            e.printStackTrace();
+
+            }
+            return null;
+
     }
 }
