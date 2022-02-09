@@ -82,24 +82,6 @@ public class ReimbursementDaoImplTest extends TestCase {
         assertNotNull(test);
     }
 
-    @Test
-    public void testGetById() {
-        ReimbursementService rs = new ReimbursementService();
-
-        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
-        ReimbursementDao testDao = new ReimbursementDaoImpl();
-
-        Reimbursement r = rs.createReimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
-                "",3, 4, 5, 0);
-
-        Reimbursement test = testDao.getById(1);
-
-        when(rd.getById(anyInt())).thenReturn(r);
-        System.out.println(test);
-        assertNotNull(test);
-    }
 /*
     @Test
     public void testCreate() {

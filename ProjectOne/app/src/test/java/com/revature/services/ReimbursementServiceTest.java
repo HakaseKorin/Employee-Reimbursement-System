@@ -91,22 +91,4 @@ public class ReimbursementServiceTest extends TestCase {
         assertNotNull(test);
     }
 
-    public void testGetById() {
-        //ReimbursementService rs = new ReimbursementService();
-        ReimbursementService rs = Mockito.mock(ReimbursementService.class);
-        ReimbursementService testService = new ReimbursementService();
-
-        Reimbursement test = rs.getById(6);
-
-        Reimbursement r = new Reimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
-                "",1, 2, 1, 1);
-
-        when(rs.getById(anyInt())).thenReturn(r);
-
-        verify(rs).getById(anyInt());
-        System.out.println(test);
-        assertEquals(test, null);
-    }
 }

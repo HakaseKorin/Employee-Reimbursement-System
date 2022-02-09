@@ -41,11 +41,24 @@ public class ReimbursementController {
         context.result(mapper.writeValueAsString(rs.getAllResolved()));
     };
 
-    public Handler getById = (context) -> {
+    public Handler getByAuthor = (context) -> {
         Integer id = Integer.parseInt(context.pathParam("id"));
 
-        context.result(mapper.writeValueAsString(rs.getById(id)));
+        context.result(mapper.writeValueAsString(rs.getByAuthor(id)));
     };
+
+    public Handler getByAuthorAndPending = (context) -> {
+        Integer id = Integer.parseInt(context.pathParam("id"));
+
+        context.result(mapper.writeValueAsString(rs.getByAuthorAndPending(id)));
+    };
+
+    public Handler getByAuthorAndResolved = (context) -> {
+        Integer id = Integer.parseInt(context.pathParam("id"));
+
+        context.result(mapper.writeValueAsString(rs.getByAuthorAndResolved(id)));
+    };
+
 
 
 

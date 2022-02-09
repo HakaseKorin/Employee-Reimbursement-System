@@ -19,7 +19,9 @@ public class ReimbursementRoutes extends Route{
         app.get("/reimbursement/all", rc.getAll);
         app.get("/reimbursement/pending", rc.getAllPending);
         app.get("/reimbursement/resolved", rc.getAllResolved);
-        app.get("/reimbursement/{id}", rc.getById);
+        app.get("/reimbursement/{id}", rc.getByAuthor);
+        app.get("/reimbursement/pending/{id}", rc.getByAuthorAndPending);
+        app.get("/reimbursement/resolved/{id}", rc.getByAuthorAndResolved);
 
     }
 }

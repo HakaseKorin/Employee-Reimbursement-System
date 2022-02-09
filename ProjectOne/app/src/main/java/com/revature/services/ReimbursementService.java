@@ -5,7 +5,6 @@ import com.revature.daos.ReimbursementDaoImpl;
 import com.revature.models.Reimbursement;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 public class ReimbursementService {
@@ -16,6 +15,9 @@ public class ReimbursementService {
                                              String description, int author, int resolver, int statusId, int typeId){
         Reimbursement reimbursement = new Reimbursement(id, amount, submitted, resolved, description, author, resolver,
                                                         statusId, typeId);
+
+        rd.create(reimbursement);
+
         return reimbursement;
     }
 
@@ -29,6 +31,11 @@ public class ReimbursementService {
 
     public List<Reimbursement> getAllResolved(){ return rd.getAllResolved();}
 
-    public Reimbursement  getById(int id){ return rd.getById(id);}
+    public List<Reimbursement> getByAuthor(int id){ return rd.getByAuthor(id);}
+
+    public List<Reimbursement> getByAuthorAndPending(int id){ return rd.getByAuthorAndPending(id);}
+
+    public List<Reimbursement> getByAuthorAndResolved(int id){ return rd.getByAuthorAndResolved(id);}
 
 }
+
