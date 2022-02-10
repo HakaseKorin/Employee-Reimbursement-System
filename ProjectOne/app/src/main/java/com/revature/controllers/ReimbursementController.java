@@ -16,15 +16,12 @@ public class ReimbursementController {
 
         rs.createReimbursement(r.getId(), r.getAmount(), r.getSubmitted(), r.getResolved(), r.getDescription(),
                 r.getAuthor(), r.getResolver(), r.getStatusId(), r.getTypeId());
-
         context.result(mapper.writeValueAsString(r));
     };
 
     public Handler update = (context) -> {
+        //fix!
         Reimbursement r = mapper.readValue(context.body(), Reimbursement.class);
-
-        rs.createReimbursement(r.getId(), r.getAmount(), r.getSubmitted(), r.getResolved(), r.getDescription(),
-                r.getAuthor(), r.getResolver(), r.getStatusId(), r.getTypeId());
 
         context.result(mapper.writeValueAsString(r));
     };

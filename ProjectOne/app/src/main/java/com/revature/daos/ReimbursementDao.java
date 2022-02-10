@@ -7,7 +7,7 @@ import java.util.List;
 public interface ReimbursementDao {
 
     boolean create(Reimbursement reimbursement);
-    boolean update(Reimbursement reimbursement);
+    boolean updateStatus(Reimbursement reimbursement);
     List<Reimbursement> getAll();
     List<Reimbursement> getAllPending();
     List<Reimbursement> getAllResolved();

@@ -13,23 +13,20 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
     @Override
     public boolean create(Reimbursement reimbursement) {
-        String sql = "insert into \"ProjectOne\".ers_reimbursement (reimb_amount, reimb_submitted, reimb_resolved, " +
-                "reimb_description, reimb_author, reimb_resolver, reimb_status_id, reimb_type_id)" +
-                " values (? ,? ,? ,? ,? ,? ,? ,?)";
+        String sql = "insert into \"ProjectOne\".ers_reimbursement (reimb_amount, reimb_submitted, " +
+                "reimb_description, reimb_author, reimb_status_id, reimb_type_id)" +
+                " values (?, ?, ?, ?, ?, ?)";
         try(Connection c = ConnectionUtil.getConnection();
             PreparedStatement ps = c.prepareStatement(sql)){
 
             PGmoney money = new PGmoney(reimbursement.getAmount());
             ps.setObject(1, money);
-            Timestamp submitted = Timestamp.valueOf(reimbursement.getSubmitted());
+            Timestamp submitted = Timestamp.valueOf(LocalDateTime.now());
             ps.setTimestamp(2, submitted);
-            Timestamp resolved = Timestamp.valueOf(reimbursement.getResolved());
-            ps.setTimestamp(3, resolved);
-            ps.setString(4, reimbursement.getDescription());
-            ps.setInt(5, reimbursement.getAuthor());
-            ps.setInt(6, reimbursement.getResolver());
-            ps.setInt(7, reimbursement.getStatusId());
-            ps.setInt(8, reimbursement.getTypeId());
+            ps.setString(3, reimbursement.getDescription());
+            ps.setInt(4, reimbursement.getAuthor());
+            ps.setInt(5, 1);//for pending
+            ps.setInt(6, reimbursement.getTypeId());
 
             int rowsAffected = ps.executeUpdate();
             if(rowsAffected == 1)
@@ -41,12 +38,16 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
     }
 
     @Override
-    public boolean update(Reimbursement reimbursement) {
-        String sql = "";
+    public boolean updateStatus(Reimbursement reimbursement) {
+        String sql = "update \"ProjectOne\".ers_reimbursement set reimb_status_id = ?, reimb_resolver = ?" +
+                " where reimb_id = ?;";
 
         try(Connection c = ConnectionUtil.getConnection();
             PreparedStatement ps = c.prepareStatement(sql)){
 
+            ps.setInt(1,reimbursement.getStatusId());
+            ps.setInt(2,reimbursement.getResolver());
+            ps.setInt(3,reimbursement.getId());
 
             int rowsAffected = ps.executeUpdate();
             if(rowsAffected == 1)

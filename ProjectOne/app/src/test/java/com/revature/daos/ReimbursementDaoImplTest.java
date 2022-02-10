@@ -29,7 +29,7 @@ public class ReimbursementDaoImplTest extends TestCase {
         //Mock the class we're testing that requires db connection
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
 
-        Reimbursement r = new Reimbursement(1, 10.00f,
+        Reimbursement r = new Reimbursement(1,10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
                 LocalDateTime.of(2022, 2,5, 0, 0),
                 "",3, 4, 5, 0);
@@ -69,7 +69,7 @@ public class ReimbursementDaoImplTest extends TestCase {
 
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
 
-        Reimbursement r = new Reimbursement(1, 10.00f,
+        Reimbursement r = new Reimbursement(1,10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
                 LocalDateTime.of(2022, 2,5, 0, 0),
                 "",3, 4, 5, 0);

@@ -29,6 +29,13 @@ public class Reimbursement {
         this.typeId = typeId;
     }
 
+    public Reimbursement(float amount, String description, int author, int typeId) {
+        this.amount = amount;
+        this.description = description;
+        this.author = author;
+        this.typeId = typeId;
+    }
+
     public int getId() {
         return id;
     }
