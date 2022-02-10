@@ -28,4 +28,6 @@ public class UserService {
     }
 
     public boolean createUser(User u) { return userDao.createUser (u);}
+
+    public User getUserByUsernameAndPassword(String username, String password) {return userDao.getUserByUsernameAndPassword(username, password);}
 }
