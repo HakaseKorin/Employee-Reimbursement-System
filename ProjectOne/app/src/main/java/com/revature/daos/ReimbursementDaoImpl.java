@@ -74,8 +74,9 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
                 r.setId(rs.getInt("reimb_id"));
                 r.setAmount(rs.getFloat("reimb_amount"));
-                r.setSubmitted(rs.getObject("reimb_submitted", LocalDateTime.class));
-                r.setResolved(rs.getObject("reimb_resolved", LocalDateTime.class));
+                r.setSubmitted(rs.getObject("reimb_submitted", Timestamp.class).toLocalDateTime());
+                if(rs.getObject("reimb_resolved", Timestamp.class) != null)
+                    r.setResolved(rs.getObject("reimb_resolved", Timestamp.class).toLocalDateTime());
                 r.setDescription(rs.getString("reimb_description"));
                 r.setAuthor(rs.getInt("reimb_author"));
                 r.setResolver(rs.getInt("reimb_resolver"));
@@ -105,8 +106,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
                 r.setId(rs.getInt("reimb_id"));
                 r.setAmount(rs.getFloat("reimb_amount"));
-                r.setSubmitted(rs.getObject("reimb_submitted", LocalDateTime.class));
-                r.setResolved(rs.getObject("reimb_resolved", LocalDateTime.class));
+                r.setSubmitted(rs.getObject("reimb_submitted", Timestamp.class).toLocalDateTime());
+                r.setResolved(rs.getObject("reimb_resolved", Timestamp.class).toLocalDateTime());
                 r.setDescription(rs.getString("reimb_description"));
                 r.setAuthor(rs.getInt("reimb_author"));
                 r.setResolver(rs.getInt("reimb_resolver"));
@@ -136,8 +137,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
                 r.setId(rs.getInt("reimb_id"));
                 r.setAmount(rs.getFloat("reimb_amount"));
-                r.setSubmitted(rs.getObject("reimb_submitted", LocalDateTime.class));
-                r.setResolved(rs.getObject("reimb_resolved", LocalDateTime.class));
+                r.setSubmitted(rs.getObject("reimb_submitted", Timestamp.class).toLocalDateTime());
+                r.setResolved(rs.getObject("reimb_resolved", Timestamp.class).toLocalDateTime());
                 r.setDescription(rs.getString("reimb_description"));
                 r.setAuthor(rs.getInt("reimb_author"));
                 r.setResolver(rs.getInt("reimb_resolver"));
@@ -170,8 +171,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
                 r.setId(rs.getInt("reimb_id"));
                 r.setAmount(rs.getFloat("reimb_amount"));
-                r.setSubmitted(rs.getObject("reimb_submitted", LocalDateTime.class));
-                r.setResolved(rs.getObject("reimb_resolved", LocalDateTime.class));
+                r.setSubmitted(rs.getObject("reimb_submitted", Timestamp.class).toLocalDateTime());
+                r.setResolved(rs.getObject("reimb_resolved", Timestamp.class).toLocalDateTime());
                 r.setDescription(rs.getString("reimb_description"));
                 r.setAuthor(rs.getInt("reimb_author"));
                 r.setResolver(rs.getInt("reimb_resolver"));
@@ -205,8 +206,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
                 r.setId(rs.getInt("reimb_id"));
                 r.setAmount(rs.getFloat("reimb_amount"));
-                r.setSubmitted(rs.getObject("reimb_submitted", LocalDateTime.class));
-                r.setResolved(rs.getObject("reimb_resolved", LocalDateTime.class));
+                r.setSubmitted(rs.getObject("reimb_submitted", Timestamp.class).toLocalDateTime());
+                r.setResolved(rs.getObject("reimb_resolved", Timestamp.class).toLocalDateTime());
                 r.setDescription(rs.getString("reimb_description"));
                 r.setAuthor(rs.getInt("reimb_author"));
                 r.setResolver(rs.getInt("reimb_resolver"));
@@ -240,8 +241,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
                 r.setId(rs.getInt("reimb_id"));
                 r.setAmount(rs.getFloat("reimb_amount"));
-                r.setSubmitted(rs.getObject("reimb_submitted", LocalDateTime.class));
-                r.setResolved(rs.getObject("reimb_resolved", LocalDateTime.class));
+                r.setSubmitted(rs.getObject("reimb_submitted", Timestamp.class).toLocalDateTime());
+                r.setResolved(rs.getObject("reimb_resolved", Timestamp.class).toLocalDateTime());
                 r.setDescription(rs.getString("reimb_description"));
                 r.setAuthor(rs.getInt("reimb_author"));
                 r.setResolver(rs.getInt("reimb_resolver"));
