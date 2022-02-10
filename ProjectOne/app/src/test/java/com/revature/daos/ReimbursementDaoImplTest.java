@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.mockito.Mockito.*;
 
+@Deprecated
 public class ReimbursementDaoImplTest extends TestCase {
 
     @Mock
@@ -25,9 +26,10 @@ public class ReimbursementDaoImplTest extends TestCase {
     public void testGetAll() {
         //create a list to get the return object from the mock
         List<Reimbursement> list = new ArrayList<>();
-        ReimbursementService rs = new ReimbursementService();
         //Mock the class we're testing that requires db connection
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
+
 
         Reimbursement r = new Reimbursement(1,10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
@@ -35,7 +37,7 @@ public class ReimbursementDaoImplTest extends TestCase {
                 "",3, 4, 5, 0);
         list.add(r);
 
-        List<Reimbursement> test = rd.getAll();
+        List<Reimbursement> test = rs.getAll();
         //when it calls the function we're testing it returns the expected return type
         when(rd.getAll()).thenReturn(list);
         //makes sure that the test object has something;
@@ -45,9 +47,8 @@ public class ReimbursementDaoImplTest extends TestCase {
     @Test
     public void testGetAllPending() {
         List<Reimbursement> list = new ArrayList<>();
-        ReimbursementService rs = new ReimbursementService();
-
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
 
         Reimbursement r = new Reimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
@@ -55,7 +56,7 @@ public class ReimbursementDaoImplTest extends TestCase {
                 "",3, 4, 5, 0);
         list.add(r);
 
-        List<Reimbursement> test = rd.getAllPending();
+        List<Reimbursement> test = rs.getAllPending();
 
         when(rd.getAllPending()).thenReturn(list);
 
@@ -65,9 +66,9 @@ public class ReimbursementDaoImplTest extends TestCase {
     @Test
     public void testGetAllResolved() {
         List<Reimbursement> list = new ArrayList<>();
-        ReimbursementService rs = new ReimbursementService();
-
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+
+        ReimbursementService rs = new ReimbursementService(rd);
 
         Reimbursement r = new Reimbursement(1,10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
@@ -75,7 +76,7 @@ public class ReimbursementDaoImplTest extends TestCase {
                 "",3, 4, 5, 0);
         list.add(r);
 
-        List<Reimbursement> test = rd.getAllResolved();
+        List<Reimbursement> test = rs.getAllResolved();
 
         when(rd.getAllResolved()).thenReturn(list);
         System.out.println(test);

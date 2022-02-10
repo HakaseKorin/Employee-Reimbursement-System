@@ -10,7 +10,11 @@ import java.util.List;
 
 public class ReimbursementService {
 
-    private ReimbursementDao rd = new ReimbursementDaoImpl();
+    public ReimbursementService(ReimbursementDao rd){
+        this.rd = rd;
+    }
+
+    private ReimbursementDao rd;
 
     public Reimbursement createReimbursement(int id, float amount, LocalDateTime submitted, LocalDateTime resolved,
                                              String description, int author, int resolver, int statusId, int typeId){

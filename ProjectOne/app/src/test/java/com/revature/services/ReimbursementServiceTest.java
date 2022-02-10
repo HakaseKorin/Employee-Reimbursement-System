@@ -22,55 +22,46 @@ import static org.mockito.Mockito.*;
 
 public class ReimbursementServiceTest extends TestCase {
 
-    @Mock
-    static ReimbursementDao rd;
-
-    @InjectMocks
-    private static ReimbursementService rs = new ReimbursementService();
-
-    @Before
-    public void initMocks(){
-        MockitoAnnotations.openMocks(this);
-    }
 
     public void testCreateReimbursement() {
-        ReimbursementService rs = mock(ReimbursementService.class);
+        //not mocked
+        ReimbursementDao rd = new ReimbursementDaoImpl();
+        ReimbursementService rs = new ReimbursementService(rd);
 
-        Reimbursement test = new Reimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
-                "",3, 4, 5, 0);
-
-        when(rs.createReimbursement(
-                anyInt(), anyFloat(), any(), any(), anyString(),anyInt(),anyInt(),anyInt(),anyInt())).thenReturn(test);
-
-        rs.createReimbursement(1, 10.00f,
+        Reimbursement test = rs.createReimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
                 LocalDateTime.of(2022, 2,5, 0, 0),
                 "",3, 4, 5, 0);
 
         assertNotNull(test);
-
     }
 
     public void testCreate(){
-        ReimbursementService rs = mock(ReimbursementService.class);
+        //we're mocking the Dao class so it doesn't connect to the DB
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        //service class needs to take a dao class object inorder to inject the mock
+        ReimbursementService rs = new ReimbursementService(rd);
 
-        when(rs.create(anyFloat(),anyString(),anyInt(),anyInt())).thenReturn(true);
+        //when method is being run, the returns an already prepared response
+        when(rd.create(any())).thenReturn(true);
 
+        //rs will run rd methods making the when mock test run
         boolean status = rs.create(100.00f, "test", 1,1);
+        //test to see if the mock is successfully run
+        //objective is to call the service method without calling the db
         assertTrue(status);
     }
 
     public void testUpdateStatus() {
-        ReimbursementService rs = mock(ReimbursementService.class);
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
 
         Reimbursement r = new Reimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
                 LocalDateTime.of(2022, 2,5, 0, 0),
                 "",3, 4, 5, 0);
 
-        when(rs.updateStatus(r)).thenReturn(true);
+        when(rd.updateStatus(any())).thenReturn(true);
         boolean status = rs.updateStatus(r);
         assertTrue(status);
     }
@@ -78,7 +69,8 @@ public class ReimbursementServiceTest extends TestCase {
 
     public void testGetAll() {
         List<Reimbursement> list = new ArrayList<>();
-        ReimbursementService rs = mock(ReimbursementService.class);
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
 
         Reimbursement r = new Reimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
@@ -86,14 +78,15 @@ public class ReimbursementServiceTest extends TestCase {
                 "",3, 4, 5, 0);
         list.add(r);
 
-        when(rs.getAll()).thenReturn(list);
+        when(rd.getAll()).thenReturn(list);
         List<Reimbursement> test = rs.getAll();
         assertNotNull(test);
     }
 
     public void testGetAllPending() {
         List<Reimbursement> list = new ArrayList<>();
-        ReimbursementService rs = mock(ReimbursementService.class);
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
 
         Reimbursement r = rs.createReimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
@@ -101,7 +94,7 @@ public class ReimbursementServiceTest extends TestCase {
                 "",3, 4, 5, 0);
         list.add(r);
 
-        when(rs.getAllPending()).thenReturn(list);
+        when(rd.getAllPending()).thenReturn(list);
         List<Reimbursement> test = rs.getAllPending();
 
         assertNotNull(test);
@@ -109,7 +102,8 @@ public class ReimbursementServiceTest extends TestCase {
 
     public void testGetAllResolved() {
         List<Reimbursement> list = new ArrayList<>();
-        ReimbursementService rs = mock(ReimbursementService.class);
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
 
         Reimbursement r = rs.createReimbursement(1, 10.00f,
                 LocalDateTime.of(2022, 2, 4, 0, 0),
@@ -117,10 +111,57 @@ public class ReimbursementServiceTest extends TestCase {
                 "",3, 4, 5, 0);
         list.add(r);
 
-        when(rs.getAllResolved()).thenReturn(list);
+        when(rd.getAllResolved()).thenReturn(list);
         List<Reimbursement> test = rs.getAllResolved();
 
         assertNotNull(test);
     }
 
+    public void testGetByAuthor() {
+        List<Reimbursement> list = new ArrayList<>();
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
+
+        Reimbursement r = rs.createReimbursement(1, 10.00f,
+                LocalDateTime.of(2022, 2, 4, 0, 0),
+                LocalDateTime.of(2022, 2,5, 0, 0),
+                "",3, 4, 5, 0);
+        list.add(r);
+
+        when(rd.getByAuthor(anyInt())).thenReturn(list);
+        List<Reimbursement> test = rs.getByAuthor(1);
+        assertNotNull(test);
+    }
+
+    public void testGetByAuthorAndPending() {
+        List<Reimbursement> list = new ArrayList<>();
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
+
+        Reimbursement r = rs.createReimbursement(1, 10.00f,
+                LocalDateTime.of(2022, 2, 4, 0, 0),
+                LocalDateTime.of(2022, 2,5, 0, 0),
+                "",3, 4, 5, 0);
+        list.add(r);
+
+        when(rd.getByAuthorAndPending(anyInt())).thenReturn(list);
+        List<Reimbursement> test = rs.getByAuthorAndPending(1);
+        assertNotNull(test);
+    }
+
+    public void testGetByAuthorAndResolved() {
+        List<Reimbursement> list = new ArrayList<>();
+        ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
+        ReimbursementService rs = new ReimbursementService(rd);
+
+        Reimbursement r = rs.createReimbursement(1, 10.00f,
+                LocalDateTime.of(2022, 2, 4, 0, 0),
+                LocalDateTime.of(2022, 2,5, 0, 0),
+                "",3, 4, 5, 0);
+        list.add(r);
+
+        when(rd.getByAuthorAndResolved(anyInt())).thenReturn(list);
+        List<Reimbursement> test = rs.getByAuthorAndResolved(1);
+        assertNotNull(test);
+    }
 }
