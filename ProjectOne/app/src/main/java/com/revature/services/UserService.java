@@ -9,7 +9,12 @@ import java.util.List;
 
 public class UserService {
 
-    private final UserDao userDao = new UserDaoImpl();
+
+    private UserDao userDao;
+
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
 
     public User createUser(int id, String username, String password, String firstName, String lastName, String email, int roleId){
@@ -31,7 +36,7 @@ public class UserService {
         return userDao.updateUser(u);
     }
 
-    public boolean createUser(User u) { return userDao.createUser (u);}
-
     public User getUserByUsernameAndPassword(String username, String password) {return userDao.getUserByUsernameAndPassword(username, password);}
+
+
 }

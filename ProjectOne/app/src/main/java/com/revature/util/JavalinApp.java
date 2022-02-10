@@ -21,7 +21,7 @@ public class JavalinApp {
     private static ReimbursementController rc = new ReimbursementController(rs);
 
     private static UserDao ud = new UserDaoImpl();
-    private static UserService us = new UserService();
+    private static UserService us = new UserService(ud);
     private static UserController uc = new UserController(us);
 
     private static AuthService as= new AuthService(ud);

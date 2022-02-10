@@ -19,16 +19,15 @@ public class UserDaoImplTest extends TestCase {
     public void testGetAllUsers(){
         //create a list to get the return object from the mock
         List<User> users = new ArrayList<>();
-        UserService us = new UserService();
         //Mock the class we're testing that requires db connection
         UserDao userDao = mock(UserDaoImpl.class);
+        UserService us = new UserService(userDao);
         //Instance of the class we're testing
-        UserDao usrDao = new UserDaoImpl();
 
         User user = us.createUser(1,"JohnDoe", "password", "John", "Doe", "JohnDoe@email.com", 1 );
         users.add(user);
 
-        List<User> test = usrDao.getAllUsers();
+        List<User> test = us.getAllUsers();
         //when it calls the function we're testing it returns the expected return type
         when(userDao.getAllUsers()).thenReturn(users);
         //makes sure that the test object has something;
@@ -37,9 +36,8 @@ public class UserDaoImplTest extends TestCase {
 
     @Test
     public void testGetUserById(){
-        UserService us = new UserService();
-
         UserDao userDao = mock(UserDaoImpl.class);
+        UserService us = new UserService(userDao);
 
         User user = us.createUser(1,"JohnDoe", "password", "John", "Doe", "JohnDoe@email.com", 1 );
         userDao.getUserById(1);
@@ -51,9 +49,9 @@ public class UserDaoImplTest extends TestCase {
     }
     @Test
     public void testUpdateUser(){
-        UserService us = new UserService();
-
         UserDao userDao = mock(UserDaoImpl.class);
+        UserService us = new UserService(userDao);
+
         User user = us.createUser(1,"JohnDoe", "password", "John", "Doe", "JohnDoe@email.com", 1 );
         userDao.updateUser(user);
 
@@ -64,9 +62,9 @@ public class UserDaoImplTest extends TestCase {
     }
     @Test
     public void testCreateUser(){
-        UserService us = new UserService();
-
         UserDao userDao = mock(UserDaoImpl.class);
+        UserService us = new UserService(userDao);
+
         User user = us.createUser(1,"JohnDoe", "password", "John", "Doe", "JohnDoe@email.com", 1 );
         userDao.createUser(user);
 
