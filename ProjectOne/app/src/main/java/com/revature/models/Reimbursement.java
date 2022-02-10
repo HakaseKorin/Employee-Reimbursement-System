@@ -1,14 +1,13 @@
 package com.revature.models;
 
 
-import java.time.LocalDateTime;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Reimbursement {
     private int id;
     private float amount;
-    private LocalDateTime submitted;
-    private LocalDateTime resolved;
+    private Timestamp submitted;
+    private Timestamp resolved;
     private String description;
     private int author;
     private int resolver;
@@ -17,7 +16,7 @@ public class Reimbursement {
 
     public Reimbursement() {}
 
-    public Reimbursement(int id, float amount, LocalDateTime submitted, LocalDateTime resolved, String description, int author, int resolver, int statusId, int typeId) {
+    public Reimbursement(int id, float amount, Timestamp submitted, Timestamp resolved, String description, int author, int resolver, int statusId, int typeId) {
         this.id = id;
         this.amount = amount;
         this.submitted = submitted;
@@ -52,19 +51,19 @@ public class Reimbursement {
         this.amount = amount;
     }
 
-    public LocalDateTime getSubmitted() {
+    public Timestamp getSubmitted() {
         return submitted;
     }
 
-    public void setSubmitted(LocalDateTime submitted) {
+    public void setSubmitted(Timestamp submitted) {
         this.submitted = submitted;
     }
 
-    public LocalDateTime getResolved() {
+    public Timestamp getResolved() {
         return resolved;
     }
 
-    public void setResolved(LocalDateTime resolved) {
+    public void setResolved(Timestamp resolved) {
         this.resolved = resolved;
     }
 

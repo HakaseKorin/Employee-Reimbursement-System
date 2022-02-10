@@ -1,11 +1,10 @@
 package com.revature.services;
 
 import com.revature.daos.ReimbursementDao;
-import com.revature.daos.ReimbursementDaoImpl;
 import com.revature.models.Reimbursement;
 import com.revature.util.LoggingSingleton;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ReimbursementService {
@@ -16,7 +15,7 @@ public class ReimbursementService {
 
     private ReimbursementDao rd;
 
-    public Reimbursement createReimbursement(int id, float amount, LocalDateTime submitted, LocalDateTime resolved,
+    public Reimbursement createReimbursement(int id, float amount, Timestamp submitted, Timestamp resolved,
                                              String description, int author, int resolver, int statusId, int typeId){
         Reimbursement reimbursement = new Reimbursement(id, amount, submitted, resolved, description, author, resolver,
                                                         statusId, typeId);

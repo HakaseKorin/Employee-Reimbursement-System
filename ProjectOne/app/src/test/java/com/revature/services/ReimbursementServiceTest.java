@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.mockito.*;
 
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +29,12 @@ public class ReimbursementServiceTest extends TestCase {
         ReimbursementDao rd = new ReimbursementDaoImpl();
         ReimbursementService rs = new ReimbursementService(rd);
 
+        Timestamp submitted = Timestamp.valueOf(LocalDateTime.of(2022, 2, 4, 0, 0));
+        Timestamp resolved = Timestamp.valueOf(LocalDateTime.of(2022, 2,5, 0, 0));
+
         Reimbursement test = rs.createReimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
+                submitted,
+                resolved,
                 "",3, 4, 5, 0);
 
         assertNotNull(test);
@@ -56,9 +60,12 @@ public class ReimbursementServiceTest extends TestCase {
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
         ReimbursementService rs = new ReimbursementService(rd);
 
+        Timestamp submitted = Timestamp.valueOf(LocalDateTime.of(2022, 2, 4, 0, 0));
+        Timestamp resolved = Timestamp.valueOf(LocalDateTime.of(2022, 2,5, 0, 0));
+
         Reimbursement r = new Reimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
+                submitted,
+                resolved,
                 "",3, 4, 5, 0);
 
         when(rd.updateStatus(any())).thenReturn(true);
@@ -72,9 +79,12 @@ public class ReimbursementServiceTest extends TestCase {
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
         ReimbursementService rs = new ReimbursementService(rd);
 
+        Timestamp submitted = Timestamp.valueOf(LocalDateTime.of(2022, 2, 4, 0, 0));
+        Timestamp resolved = Timestamp.valueOf(LocalDateTime.of(2022, 2,5, 0, 0));
+
         Reimbursement r = new Reimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
+                submitted,
+                resolved,
                 "",3, 4, 5, 0);
         list.add(r);
 
@@ -88,9 +98,12 @@ public class ReimbursementServiceTest extends TestCase {
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
         ReimbursementService rs = new ReimbursementService(rd);
 
-        Reimbursement r = rs.createReimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
+        Timestamp submitted = Timestamp.valueOf(LocalDateTime.of(2022, 2, 4, 0, 0));
+        Timestamp resolved = Timestamp.valueOf(LocalDateTime.of(2022, 2,5, 0, 0));
+
+        Reimbursement r = new Reimbursement(1, 10.00f,
+                submitted,
+                resolved,
                 "",3, 4, 5, 0);
         list.add(r);
 
@@ -105,9 +118,12 @@ public class ReimbursementServiceTest extends TestCase {
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
         ReimbursementService rs = new ReimbursementService(rd);
 
-        Reimbursement r = rs.createReimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
+        Timestamp submitted = Timestamp.valueOf(LocalDateTime.of(2022, 2, 4, 0, 0));
+        Timestamp resolved = Timestamp.valueOf(LocalDateTime.of(2022, 2,5, 0, 0));
+
+        Reimbursement r = new Reimbursement(1, 10.00f,
+                submitted,
+                resolved,
                 "",3, 4, 5, 0);
         list.add(r);
 
@@ -122,9 +138,12 @@ public class ReimbursementServiceTest extends TestCase {
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
         ReimbursementService rs = new ReimbursementService(rd);
 
-        Reimbursement r = rs.createReimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
+        Timestamp submitted = Timestamp.valueOf(LocalDateTime.of(2022, 2, 4, 0, 0));
+        Timestamp resolved = Timestamp.valueOf(LocalDateTime.of(2022, 2,5, 0, 0));
+
+        Reimbursement r = new Reimbursement(1, 10.00f,
+                submitted,
+                resolved,
                 "",3, 4, 5, 0);
         list.add(r);
 
@@ -138,9 +157,12 @@ public class ReimbursementServiceTest extends TestCase {
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
         ReimbursementService rs = new ReimbursementService(rd);
 
-        Reimbursement r = rs.createReimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
+        Timestamp submitted = Timestamp.valueOf(LocalDateTime.of(2022, 2, 4, 0, 0));
+        Timestamp resolved = Timestamp.valueOf(LocalDateTime.of(2022, 2,5, 0, 0));
+
+        Reimbursement r = new Reimbursement(1, 10.00f,
+                submitted,
+                resolved,
                 "",3, 4, 5, 0);
         list.add(r);
 
@@ -154,9 +176,12 @@ public class ReimbursementServiceTest extends TestCase {
         ReimbursementDao rd = mock(ReimbursementDaoImpl.class);
         ReimbursementService rs = new ReimbursementService(rd);
 
-        Reimbursement r = rs.createReimbursement(1, 10.00f,
-                LocalDateTime.of(2022, 2, 4, 0, 0),
-                LocalDateTime.of(2022, 2,5, 0, 0),
+        Timestamp submitted = Timestamp.valueOf(LocalDateTime.of(2022, 2, 4, 0, 0));
+        Timestamp resolved = Timestamp.valueOf(LocalDateTime.of(2022, 2,5, 0, 0));
+
+        Reimbursement r = new Reimbursement(1, 10.00f,
+                submitted,
+                resolved,
                 "",3, 4, 5, 0);
         list.add(r);
 

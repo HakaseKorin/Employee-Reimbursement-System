@@ -3,7 +3,6 @@ package com.revature.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.Reimbursement;
 import com.revature.services.ReimbursementService;
-import io.javalin.http.Context;
 import io.javalin.http.Handler;
 
 public class ReimbursementController {
@@ -16,8 +15,7 @@ public class ReimbursementController {
     public Handler create = (context) -> {
         Reimbursement r = mapper.readValue(context.body(), Reimbursement.class);
 
-        rs.createReimbursement(r.getId(), r.getAmount(), r.getSubmitted(), r.getResolved(), r.getDescription(),
-                r.getAuthor(), r.getResolver(), r.getStatusId(), r.getTypeId());
+        rs.create(r.getAmount(), r.getDescription(), r.getAuthor(), r.getTypeId());
         context.result(mapper.writeValueAsString(r));
     };
 
