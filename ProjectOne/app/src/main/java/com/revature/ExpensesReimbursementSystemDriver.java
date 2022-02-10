@@ -1,20 +1,14 @@
 package com.revature;
 
-import com.revature.daos.UserDao;
-import com.revature.daos.UserDaoImpl;
-import com.revature.models.User;
-import com.revature.services.UserService;
-import com.revature.util.ConnectionUtil;
-import io.javalin.Javalin;
-
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.List;
+import com.revature.util.JavalinApp;
 
 public class ExpensesReimbursementSystemDriver {
 
 
     public static void main(String[] args){
+
+        JavalinApp app = new JavalinApp();
+        app.start(8080);
 
   /*      try {
             Connection c = ConnectionUtil.getConnection();
@@ -30,7 +24,7 @@ public class ExpensesReimbursementSystemDriver {
 
         boolean success = userDao.createUser(u);
         System.out.println(success);
-*/
+
         Javalin app = Javalin.create().start();
 
         app.get("/",ctx -> ctx.result("Hello World"));
@@ -94,6 +88,9 @@ public class ExpensesReimbursementSystemDriver {
 
             });
 
+
+
+   */
 
     }
 

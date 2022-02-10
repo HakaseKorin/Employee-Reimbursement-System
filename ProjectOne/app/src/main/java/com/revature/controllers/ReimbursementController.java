@@ -11,6 +11,8 @@ public class ReimbursementController {
     private ReimbursementService rs;
     private ObjectMapper mapper = new ObjectMapper();
 
+    public ReimbursementController(ReimbursementService rs){ this.rs = rs;}
+
     public Handler create = (context) -> {
         Reimbursement r = mapper.readValue(context.body(), Reimbursement.class);
 
