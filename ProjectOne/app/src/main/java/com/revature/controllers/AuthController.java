@@ -1,28 +1,44 @@
 package com.revature.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.models.User;
+import com.revature.services.AuthService;
 import com.revature.services.UserService;
 
-import io.javalin.http.Context;
+import io.javalin.http.Handler;
 import io.javalin.http.UnauthorizedResponse;
 
 public class AuthController {
 
-    private final UserService userService = new UserService();
+    private AuthService as;
+    private UserService us;
+    private ObjectMapper mapper = new ObjectMapper();
 
-    public void authenticateLogin(Context ctx){
-        //interpret request
-        String username = ctx.formParam("username");
-        String password = ctx.formParam("password");
-
-        //fulfil the request
-        User user = userService.getUserByUsernameAndPassword(username, password);
+    public AuthController(AuthService as, UserService us){
+        this.as = as;
+        this.us = us;
+    }
+    public Handler login = (context) -> {
+        //interpret the request
+        String username = context.formParam("username");
+        String password = context.formParam("password");
+        //fulfill the request
+        User user = us.getUserByUsernameAndPassword(username, password);
 
         //preparing response
         if(user == null) {
-            throw new UnauthorizedResponse("Incorrect credential");
+            throw new UnauthorizedResponse("Incorrect Username and Password.");
         }else {
-            ctx.status(200);
+            context.status(200);
+            context.result("Login Successful.");
         }
+
+    };
+
+    class LoginObject {
+        public String username;
+        public String password;
     }
+
+
 }
