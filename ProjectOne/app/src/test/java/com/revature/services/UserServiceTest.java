@@ -17,7 +17,7 @@ public class UserServiceTest extends TestCase {
 
     @Test
     public void testCreateUser() {
-
+        UserDao ud = new UserDaoImpl();
         UserService us = new UserService();
 
         User test = us.createUser(1,"JohnDoe", "password", "John", "Doe", "JohnDoe@email.com", 1 );

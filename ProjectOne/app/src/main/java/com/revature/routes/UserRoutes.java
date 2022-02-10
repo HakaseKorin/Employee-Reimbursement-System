@@ -17,5 +17,6 @@ public class UserRoutes extends Route{
         app.post("/ers_user", uc.createUser);
         app.put("/ers_user/{id}", uc.updateUser);
 
+
     }
 }
