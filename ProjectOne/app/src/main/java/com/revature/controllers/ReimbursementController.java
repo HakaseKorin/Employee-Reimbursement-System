@@ -14,16 +14,12 @@ public class ReimbursementController {
 
     public Handler create = (context) -> {
         Reimbursement r = mapper.readValue(context.body(), Reimbursement.class);
-
         rs.create(r.getAmount(), r.getDescription(), r.getAuthor(), r.getTypeId());
-        context.result(mapper.writeValueAsString(r));
     };
 
     public Handler update = (context) -> {
-        //fix!
         Reimbursement r = mapper.readValue(context.body(), Reimbursement.class);
-
-        context.result(mapper.writeValueAsString(r));
+        rs.updateStatus(r);
     };
 
     public Handler getAll = (context) -> {
@@ -40,19 +36,16 @@ public class ReimbursementController {
 
     public Handler getByAuthor = (context) -> {
         Integer id = Integer.parseInt(context.pathParam("id"));
-
         context.result(mapper.writeValueAsString(rs.getByAuthor(id)));
     };
 
     public Handler getByAuthorAndPending = (context) -> {
         Integer id = Integer.parseInt(context.pathParam("id"));
-
         context.result(mapper.writeValueAsString(rs.getByAuthorAndPending(id)));
     };
 
     public Handler getByAuthorAndResolved = (context) -> {
         Integer id = Integer.parseInt(context.pathParam("id"));
-
         context.result(mapper.writeValueAsString(rs.getByAuthorAndResolved(id)));
     };
 

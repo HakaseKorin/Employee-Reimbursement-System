@@ -1,7 +1,6 @@
 package com.revature.routes;
 
 import com.revature.controllers.ReimbursementController;
-import com.revature.models.Reimbursement;
 import io.javalin.Javalin;
 
 public class ReimbursementRoutes extends Route{

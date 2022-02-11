@@ -1,6 +1,5 @@
 package com.revature.models;
 
-
 import java.sql.Timestamp;
 
 public class Reimbursement {

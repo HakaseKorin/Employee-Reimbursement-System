@@ -3,7 +3,6 @@ package com.revature.services;
 import com.revature.daos.ReimbursementDao;
 import com.revature.models.Reimbursement;
 import com.revature.util.LoggingSingleton;
-
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,17 +19,20 @@ public class ReimbursementService {
         Reimbursement reimbursement = new Reimbursement(id, amount, submitted, resolved, description, author, resolver,
                                                         statusId, typeId);
 
-        LoggingSingleton.logger.info("New Reimbursement task created: " + reimbursement.toString());
+        LoggingSingleton.logger.info(this.getClass().getCanonicalName() + ": createReimbursement: " + reimbursement.toString());
 
         return reimbursement;
     }
 
     public boolean create(float amount, String description, int author, int typeId){
         Reimbursement reimbursement = new Reimbursement(amount, description, author, typeId);
+        LoggingSingleton.logger.info(this.getClass().getCanonicalName() + ": create: " + reimbursement.toString());
         return rd.create(reimbursement);
     }
 
-    public boolean updateStatus(Reimbursement reimbursement){ return rd.updateStatus(reimbursement);}
+    public boolean updateStatus(Reimbursement reimbursement){
+        LoggingSingleton.logger.info(this.getClass().getCanonicalName() + ": updateStatus: " + reimbursement.toString());
+        return rd.updateStatus(reimbursement);}
 
     public List<Reimbursement> getAll(){ return rd.getAll();}
 
