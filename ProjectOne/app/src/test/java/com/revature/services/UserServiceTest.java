@@ -21,12 +21,23 @@ public class UserServiceTest extends TestCase {
         UserDao ud = mock(UserDaoImpl.class);
         UserService us = new UserService(ud);
 
-        when(ud.createUser(any())).thenReturn(true);
-
         User test = us.createUser(1,"JohnDoe", "password", "John", "Doe", "JohnDoe@email.com", 1 );
 
         assertNotNull(test);
 
+    }
+
+    public void testCreate(){
+        UserDao ud = mock(UserDaoImpl.class);
+        UserService us = new UserService(ud);
+
+        User test = us.createUser(1,"JohnDoe", "password", "John", "Doe", "JohnDoe@email.com", 1 );
+
+        when(ud.createUser(any())).thenReturn(true);
+
+        boolean status = us.create(test);
+
+        assertTrue(true);
     }
 
     @Test
