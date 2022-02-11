@@ -108,19 +108,19 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean createUser(User u) {
 
-        String sql = "insert into \"ProjectOne\".ers_user (ers_users_id, ers_username, ers_password, user_first_name, user_last_name, " +
-                "user_email, user_role_id) values (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "insert into \"ProjectOne\".ers_user (ers_username, ers_password, user_first_name, user_last_name, " +
+                "user_email, user_role_id) values (?, ?, ?, ?, ?, ?)";
 
         try (Connection c = ConnectionUtil.getConnection();
              PreparedStatement ps = c.prepareStatement(sql);) {
 
-            ps.setInt(1, u.getId());
-            ps.setString(2, u.getUsername());
-            ps.setString(3, u.getPassword());
-            ps.setString(4, u.getFirstName());
-            ps.setString(5, u.getLastName());
-            ps.setString(6, u.getEmail());
-            ps.setInt(7, u.getRoleId());
+
+            ps.setString(1, u.getUsername());
+            ps.setString(2, u.getPassword());
+            ps.setString(3, u.getFirstName());
+            ps.setString(4, u.getLastName());
+            ps.setString(5, u.getEmail());
+            ps.setInt(6, u.getRoleId());
 
             int rowAffected = ps.executeUpdate();
 

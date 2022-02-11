@@ -19,9 +19,7 @@ public class UserController {
 
     public Handler createUser = (context) -> {
         User u = mapper.readValue(context.body(), User.class);
-
         us.create(u);
-        context.result(mapper.writeValueAsString(u));
     };
 
     public Handler getAllUsers = (context) -> {
@@ -36,15 +34,11 @@ public class UserController {
     };
 
     public Handler updateUser = (context) -> {
+        int id = Integer.parseInt(context.pathParam("id"));
         User u = mapper.readValue(context.body(), User.class);
+        u.setId(id);
 
         us.updateUser(u);
-
-       // us.createUser(u.getId(), u.getUsername(), u.getPassword(), u.getFirstName(), u.getLastName(), u.getEmail(),
-            //    u.getRoleId());
-
-       context.result(mapper.writeValueAsString(us.updateUser(u)));
-
     };
 
 
