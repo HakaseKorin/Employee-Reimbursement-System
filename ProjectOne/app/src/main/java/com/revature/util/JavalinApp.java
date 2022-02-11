@@ -7,6 +7,7 @@ import com.revature.daos.ReimbursementDao;
 import com.revature.daos.ReimbursementDaoImpl;
 import com.revature.daos.UserDao;
 import com.revature.daos.UserDaoImpl;
+import com.revature.routes.AuthRoutes;
 import com.revature.routes.ReimbursementRoutes;
 import com.revature.routes.Route;
 import com.revature.routes.UserRoutes;
@@ -37,9 +38,10 @@ public class JavalinApp {
         app.get("/hello", ctx -> ctx.result("Hello get path"));
 
         Route reimbursement = new ReimbursementRoutes(rc);
-        Route user = new UserRoutes(uc,ac);
+        Route user = new UserRoutes(uc);
+        Route auth = new AuthRoutes(ac);
 
-        Route.establishRoutes(app, reimbursement, user);
+        Route.establishRoutes(app, reimbursement, user, auth);
 
         app.error(403, ctx -> {
             ctx.result("The request you submitted is invalid");

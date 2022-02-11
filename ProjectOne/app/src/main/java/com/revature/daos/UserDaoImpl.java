@@ -2,6 +2,7 @@ package com.revature.daos;
 
 import com.revature.models.User;
 import com.revature.util.ConnectionUtil;
+import com.revature.util.LoggingSingleton;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -94,13 +95,12 @@ public class UserDaoImpl implements UserDao {
 
             if (rowAffected == 1) {
                 return true;
-
             }
-
         } catch (SQLException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            LoggingSingleton.logger.warn(this.getClass().getCanonicalName() + "Update User Failed", e);
         }
-
+        LoggingSingleton.logger.warn(this.getClass().getCanonicalName() + "Update User Failed");
         return false;
     }
 
@@ -129,10 +129,10 @@ public class UserDaoImpl implements UserDao {
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
-
+            //e.printStackTrace();
+            LoggingSingleton.logger.warn(this.getClass().getCanonicalName() + "Create User Failed", e);
         }
-
+        LoggingSingleton.logger.warn(this.getClass().getCanonicalName() + "Create User Failed");
         return false;
     }
 

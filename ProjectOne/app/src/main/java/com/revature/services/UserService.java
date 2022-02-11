@@ -24,17 +24,19 @@ public class UserService {
         return user;
     }
 
-    public boolean create(User u) {return userDao.createUser(u);}
-
-    public List<User> getAllUsers(){
-        return userDao.getAllUsers();
+    public boolean create(User u) {
+        LoggingSingleton.logger.info(this.getClass().getCanonicalName() + ": createUser: " + u.toString());
+        return userDao.createUser(u);
     }
+
+    public List<User> getAllUsers(){ return userDao.getAllUsers();}
 
     public User getUserById(int id){
         return userDao.getUserById(id);
     }
 
     public boolean updateUser(User u){
+        LoggingSingleton.logger.info(this.getClass().getCanonicalName() + ": updated user: " + u.toString());
         return userDao.updateUser(u);
     }
 

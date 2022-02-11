@@ -4,12 +4,9 @@ import com.revature.controllers.ReimbursementController;
 import io.javalin.Javalin;
 
 public class ReimbursementRoutes extends Route{
-
     private ReimbursementController rc;
 
-    public ReimbursementRoutes(ReimbursementController rc){
-        this.rc = rc;
-    }
+    public ReimbursementRoutes(ReimbursementController rc) {this.rc = rc;}
 
     @Override
     public void registerLocalRoutes(Javalin app) {

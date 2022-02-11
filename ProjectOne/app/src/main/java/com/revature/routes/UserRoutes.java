@@ -6,14 +6,9 @@ import com.revature.controllers.UserController;
 import io.javalin.Javalin;
 
 public class UserRoutes extends Route{
-
     private UserController uc;
 
-
-    private AuthController ac;
-    public UserRoutes(UserController uc, AuthController ac){
-        this.uc = uc; this.ac = ac;
-    }
+    public UserRoutes(UserController uc){this.uc = uc;}
 
     @Override
     public void registerLocalRoutes(Javalin app) {
@@ -21,9 +16,5 @@ public class UserRoutes extends Route{
         app.get("/ers_user/{id}", uc.getUserById);
         app.post("/ers_user", uc.createUser);//failed
         app.put("/ers_user/{id}", uc.updateUser);//failed
-        app.post("/login", ac.login);
-        app.get("/verify", ac.verify);
-
-
     }
 }

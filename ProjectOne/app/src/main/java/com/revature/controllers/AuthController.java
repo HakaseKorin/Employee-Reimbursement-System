@@ -58,10 +58,9 @@ public class AuthController {
         }
     };
 
-    class LoginObject {
-        public String username;
-        public String password;
-    }
-
-
+    public Handler logout = context -> {
+        context.req.getSession().invalidate();
+        context.status(200);
+        context.result("User logged out");
+    };
 }
