@@ -33,6 +33,29 @@ public class AuthController {
             context.result("Login Successful.");
         }
 
+
+        //let set the session to know that the user is logged in
+        context.req.getSession().setAttribute("id", user.getId());
+        context.req.getSession().setAttribute("LoggedIn", user.getUsername());
+
+        context.header("uid", "" + user.getId());
+        context.header("LoggedIn", user.getUsername());
+        context.result(mapper.writeValueAsString(user));
+
+    };
+
+    public Handler verify = (context) -> {
+        context.header("Access-Control-Expose-Headers", "*");
+
+        System.out.println(context.req.getSession().getAttribute("id"));
+
+        if(context.req.getSession().getAttribute("id") == null) {
+            context.status(400);
+            context.result("User not logged in.");
+        }else {
+            context.header("uid", ""+context.req.getSession().getAttribute("id"));
+            context.result("User was verified as logged in.");
+        }
     };
 
     class LoginObject {

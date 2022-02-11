@@ -22,6 +22,7 @@ public class UserRoutes extends Route{
         app.post("/ers_user", uc.createUser);//failed
         app.put("/ers_user/{id}", uc.updateUser);//failed
         app.post("/login", ac.login);
+        app.get("/verify", ac.verify);
 
 
     }
