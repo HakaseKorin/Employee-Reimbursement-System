@@ -1,7 +1,6 @@
 package com.revature.services;
 
 import com.revature.daos.UserDao;
-import com.revature.daos.UserDaoImpl;
 import com.revature.models.User;
 import com.revature.util.LoggingSingleton;
 

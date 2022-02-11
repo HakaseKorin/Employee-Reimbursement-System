@@ -3,7 +3,6 @@ package com.revature.daos;
 import com.revature.models.User;
 import com.revature.util.ConnectionUtil;
 import com.revature.util.LoggingSingleton;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

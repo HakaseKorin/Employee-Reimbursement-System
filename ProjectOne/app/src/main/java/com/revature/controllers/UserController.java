@@ -5,9 +5,6 @@ import com.revature.models.User;
 import com.revature.services.UserService;
 import io.javalin.http.Handler;
 
-import javax.jws.soap.SOAPBinding;
-
-
 public class UserController {
 
     private UserService us;

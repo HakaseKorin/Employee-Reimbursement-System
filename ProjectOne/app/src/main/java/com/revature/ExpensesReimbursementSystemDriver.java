@@ -2,8 +2,6 @@ package com.revature;
 
 import com.revature.util.JavalinApp;
 
-import java.sql.Timestamp;
-
 public class ExpensesReimbursementSystemDriver {
 
 
