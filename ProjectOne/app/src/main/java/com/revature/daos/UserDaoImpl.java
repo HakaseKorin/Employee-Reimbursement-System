@@ -77,19 +77,18 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean updateUser(User u) {
-        String sql = "update \"ProjectOne\".ers_user set ers_username = ?, ers_password =?, user_first_name =?, " +
+        String sql = "update \"ProjectOne\".ers_user set ers_password =?, user_first_name =?, " +
                 "user_last_name = ?, user_email = ?, user_role_id = ? where ers_users_id = ?";
 
         try (Connection c = ConnectionUtil.getConnection();
              PreparedStatement ps = c.prepareStatement(sql);) {
 
-            ps.setString(1, u.getUsername());
-            ps.setString(2, u.getPassword());
-            ps.setString(3, u.getFirstName());
-            ps.setString(4, u.getLastName());
-            ps.setString(5, u.getEmail());
-            ps.setInt(6, u.getRoleId());
-            ps.setInt(7, u.getRoleId());
+            ps.setString(1, u.getPassword());
+            ps.setString(2, u.getFirstName());
+            ps.setString(3, u.getLastName());
+            ps.setString(4, u.getEmail());
+            ps.setInt(5, u.getRoleId());
+            ps.setInt(6, u.getId());
 
             int rowAffected = ps.executeUpdate();
 
