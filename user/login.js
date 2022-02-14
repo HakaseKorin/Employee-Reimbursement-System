@@ -1,32 +1,29 @@
-
-        
-// When the user clicks anywhere outside of the login, close it
-window.onclick = function(event) {
-  if (event.target == login) {
-    login.style.display = "none";
-  }
-}
-
-/*
-let login = document.getElementById("form");
-login.addEventListener("submit", submitForm);
-*/
-
-function printPressed(event){
-    console.log(`Key pressed in username field: ${event.key}`);  
-}
-
-function passwordPressed(event){
-    console.log(`Key pressed in password field: ${event.key}`);
-}
+let apiURL = 'http://34.67.71.40:7000/login';
 
 let login = document.getElementById("form");
 login.addEventListener("submit", submitForm);
 
 function submitForm(event){
     event.preventDefault();
-    console.log("We are preventing the default functionality of the form");
-    console.log(`The username was ${document.getElementById("username").value}`);
-    console.log(`The password was ${document.getElementById("psw").value}`);
+
+    var data = new FormData();
+    data.append("username", document.getElementById("username").value);
+    data.append("password", document.getElementById("password").value);
+
+    fetch(apiURL,{
+      method: 'POST',
+      body: data      
+    })
+    .then(response => response.json())
+    .then(data =>{
+      console.log('Success: ',data);
+    })
+    .catch((error)=>{
+      console.error('Error: ',error);
+    })
     
+    login.reset();
+
+    //needs to add handling for when password is incorrect
+    //needs to add redirection for when successfully logged int; for employee; for manager
 }
