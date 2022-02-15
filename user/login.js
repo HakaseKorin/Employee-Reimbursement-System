@@ -17,13 +17,15 @@ function submitForm(event){
     .then(response => response.json())
     .then(data =>{
       console.log('Success: ',data);
+
+      //checks the type of the user and redirects to the proper page
+
+      location.assign('employeeHome.html');
     })
     .catch((error)=>{
       console.error('Error: ',error);
+      login.reset();
     })
     
-    login.reset();
-
-    //needs to add handling for when password is incorrect
-    //needs to add redirection for when successfully logged int; for employee; for manager
 }
+    //needs to add handling for when password is incorrect
