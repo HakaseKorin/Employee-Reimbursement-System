@@ -37,9 +37,11 @@ public class AuthController {
         //let set the session to know that the user is logged in
         context.req.getSession().setAttribute("id", user.getId());
         context.req.getSession().setAttribute("LoggedIn", user.getUsername());
+        context.req.getSession().setAttribute("type", user.getRoleId());
 
-        context.header("uid", "" + user.getId());
+        context.header("id", Integer.toString(user.getId()));
         context.header("LoggedIn", user.getUsername());
+        context.header("type", Integer.toString(user.getRoleId()));
         context.result(mapper.writeValueAsString(user));
 
     };
