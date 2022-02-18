@@ -6,18 +6,42 @@
         <div class="nav-bar">
             <ul class="nav-list">
                 <li class="nav-item">
-                    <a href="">View Reimbursement Requests</a>
+                    <a href="employee-reimbursement.html">View Reimbursement Requests</a>
                 </li>
                 <li class="nav-item">
-                    <a href="">Submit Reimbursement Request</a>
+                    <a href="employee-submission-form.html">Submit Reimbursement Request</a>
                 </li>
             </ul>
         </div>
         <p>welcome to the employee home page</p>
         <div id="user-profile">
-        </div>
-        <div>
-            <button type="button">Update</button>
+            <form id="form-profile">
+                <div>
+                    <label for="">First Name</label>
+                    <input type="text" name="first-name" id="first-name" value="">
+                </div>
+                <div>
+                    <label for="">Last Name</label>
+                    <input type="text" name="last-name" id="last-name" value="">
+                </div>
+                <div>
+                    <label for="">Username</label>
+                    <input type="text" name="username" id="username" value="">
+                </div>
+                <div>
+                    <label for="">E-mail</label>
+                    <input type="text" name="email" id="email" value="">
+                </div>
+                <div>
+                    <label for="">Password</label>
+                    <input type="text" name="password" id="password" value="">
+                </div>
+                <div>
+                    <label for="">Role</label>
+                    <input readonly name="role" id="role" value="">
+                </div>
+                <button type="submit">Update</button>
+            </form>
         </div>
         <script src="employee.js"></script>
     </body>

@@ -2,9 +2,9 @@ const URL = "http://34.67.71.40:7000";
 
 let reimbursementTable = document.getElementById('reimbursement-table');
 let uid = window.sessionStorage.getItem("id");
-var name = "";
+
 (async () => {
-    fetch(`${URL}/reimbursement/1`)
+    fetch(`${URL}/reimbursement/${uid}`)
     .then(request => request.json())
     .then(data =>{
         console.log(data);
@@ -16,7 +16,11 @@ var name = "";
 })();
 
 function getDateTime(timestamp){
-    return new Date(timestamp);
+    if(timestamp === null){
+        return "PENDING";
+    }
+    var dateTime = new Date(timestamp)
+    return dateTime.toLocaleString('en-GB',{timeZone: 'UTC'});
 }
 
 function getStatus(statusId){
@@ -38,12 +42,37 @@ function getType(typeId){
     }
 }
 
+let arrPending = document.getElementById('view-pending');
+arrPending.addEventListener('click',viewPending);
+
+function viewPending(){
+    //hide all rows that contain a pending
+    var rows, x, pending;
+    pending = document.createElement('td');
+    pending.innerHTML = 'PENDING';
+    console.log(pending);
+    rows = reimbursementTable.rows;
+    console.log(rows);
+    for(i=1;i<(rows.length);i++){
+        x = rows[i].getElementsByTagName("TD")[7];
+        console.log(x);
+        /*
+        if(x === pending){
+            reimbursementTable.rows[i].style.display = 'table-row';
+        }else{
+            reimbursementTable.rows[i].style.display = 'none';
+
+        }
+        */
+    }
+}
+
+function viewResolved(){
+    //hide all rows that dont contain pending
+}
+
 function appendTable(results){
     for(var result of results){
-
-        var author = getUser(result.author);
-        var reviewer = getUser(result.resolver);
-        console.log(author);
 
         var row = reimbursementTable.insertRow();
 
@@ -61,16 +90,26 @@ function appendTable(results){
         resolvedCell.innerHTML = `${getDateTime(result.resolved)}`;
         descCell.innerHTML = result.description;
         amountCell.innerHTML = result.amount;
-        authorCell.innerHTML = author.lastName;
-        reviewerCell.innerHTML = reviewer.lastName;
-        statusCell.innerHTML = `${getStatus(result.statusId)}`;
-    }
-}
 
-function getUser(userId){
-    return fetch(`${URL}/ers_user/${userId}`)
-    .then(result => result.json())
-    .catch((error)=>{
-        console.error('Error: ',error);
-      })
+        authorCell = addUser(authorCell, result.author);
+        reviewerCell = addUser(reviewerCell, result.resolver);
+
+        statusCell.innerHTML = `${getStatus(result.statusId)}`;
+
+        function addUser(cell, id){
+            if(id === 0){
+                cell.innerHTML = "PENDING"
+                return cell;
+            }
+            fetch(`${URL}/ers_user/${id}`)
+            .then(result => result.json())
+            .then(data => {
+                cell.innerHTML = data.lastName;
+                return cell;
+            })
+            .catch((error)=>{
+                console.error('Error: ',error);
+            })
+        }
+    }
 }

@@ -3,8 +3,6 @@ let apiURL = 'http://34.67.71.40:7000/login';
 let login = document.getElementById("form");
 login.addEventListener("submit", submitForm);
 
-
-
 function submitForm(event){
     event.preventDefault();
 

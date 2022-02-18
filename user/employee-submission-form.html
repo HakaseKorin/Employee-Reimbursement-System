@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div class="nav-bar">
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="employee-reimbursement.html">View Reimbursement Requests</a>
+                </li>
+                <li class="nav-item">
+                    <a href="">Submit Reimbursement Request</a>
+                </li>
+            </ul>
+        </div>
+        <p>welcome to the employee reimbursement form page</p>
+        <form id="reimbursement-form">
+            <!--include drop down bar here for type of reimbursement -->
+            <div>
+                <label for="type">Reimbursement Type</label>
+                <select name="type" id="type">
+                    <option value="1">LODGING</option>
+                    <option value="2">FOOD</option>
+                    <option value="3">TRAVEL</option>
+                    <option value="4">OTHER</option>
+                </select>
+            </div>
+            <div>
+                <label for="description">Description</label>
+                <input type="text" name="description" id="description" maxlength="250">
+                <!--<textarea name="description" id="description" cols="30" rows="10"></textarea>-->
+            </div>
+            <div>
+                <label for="amount">Amount</label>
+                <input type="float" name="amount" id="amount" required/>
+            </div>
+            <div>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        <script src="employee-submission-form.js"></script>
+    </body>
+</html>
