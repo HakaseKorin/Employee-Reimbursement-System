@@ -56,14 +56,12 @@ function viewPending(){
     for(i=1;i<(rows.length);i++){
         x = rows[i].getElementsByTagName("TD")[7];
         console.log(x);
-        /*
-        if(x === pending){
+        if(x == 'PENDING'){
             reimbursementTable.rows[i].style.display = 'table-row';
         }else{
             reimbursementTable.rows[i].style.display = 'none';
 
         }
-        */
     }
 }
 

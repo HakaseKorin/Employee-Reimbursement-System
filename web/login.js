@@ -16,17 +16,18 @@ function submitForm(event){
     })
     .then(response => response.json())
     .then(data =>{
-      console.log('Success: ', data);
-
       if(storageAvailable('sessionStorage')){
         window.sessionStorage.setItem("id", `${data.id}`);
         window.sessionStorage.setItem("role", `${data.roleId}`);
       }else{
         //i guess theres no session storage for the user
       }
-      //checks the type of the user and redirects to the proper page
-
-      location.assign('employee-home.html');
+      
+      switch(`${data.roleId}`){
+        case '1': location.assign('employee-home.html'); break;
+        case '2': location.assign('manager.html'); break;
+        default: break;// should throw error
+      }
     })
     .catch((error)=>{
       console.error('Error: ',error);
