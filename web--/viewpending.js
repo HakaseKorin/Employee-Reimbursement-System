@@ -1,12 +1,9 @@
-
-
-
+let uid = window.sessionStorage.getItem("id");
+const URL = 'http://34.67.71.40:7000';
 var selectedRow = null;
-
 let ers_reimbursement;
-
 let reimbContainer = document.getElementById('tbody');
-console.log(reimbContainer);
+let table = document.getElementById("reimbdata").getElementsByTagName('tbody')[0];
 
 function populateReimbursement(ers_reimbursement) {
     const table = document.getElementById("tbody");
@@ -14,30 +11,23 @@ function populateReimbursement(ers_reimbursement) {
     
     for(reimb of ers_reimbursement) {
 
-        let table = document.getElementById("reimbdata").getElementsByTagName('tbody')[0];
-        //let table = document.createElement('table');
-        var row =  table.insertRow(table.length);
-        var cell1 = row.insertCell(0);
+        var row =  table.insertRow();
+        var cell0 = row.insertCell();
+        cell0.innerHTML = `${reimb.id}`
+        var cell1 = row.insertCell();
         cell1.innerHTML = `${getType(reimb.typeId)}`;
-        var cell2 = row.insertCell(1);
+        var cell2 = row.insertCell();
         cell2.innerHTML = `${reimb.amount}`;
-        var cell3 = row.insertCell(2);
+        var cell3 = row.insertCell();
         cell3.innerHTML = `${reimb.description}`;
-        var cell4 = row.insertCell(3);
-        cell4.innerHTML = `${addUser(reimb.author)}`;
-        var cell5 = row.insertCell(4);
-        cell5.innerHTML = `${getStatus(reimb.statusId)}`;
-        var cell6 = row.insertCell(5);
-        cell6.innerHTML = `${getDateTime(reimb.submitted)}`;
-        var cell7 = row.insertCell(6);
-        cell7.innerHTML = `${getDateTime(reimb.resolved)}`;
-        var cell8 = row.insertCell(7);
-        cell8.innerHTML =  `<button type="submit">Approved</button>  
-                            <button type="submit">Declined</button>`
-        
+        var cell4 = row.insertCell();
         cell4 = addUser(cell4, reimb.author);
-        
-        console.log(table); 
+        var cell5 = row.insertCell();
+        cell5.innerHTML = `${getStatus(reimb.statusId)}`;
+        var cell6 = row.insertCell();
+        cell6.innerHTML = `${getDateTime(reimb.submitted)}`;
+        var cell7 = row.insertCell();
+        cell7.innerHTML = `${getDateTime(reimb.resolved)}`;
         
         function addUser(cell, id) {
             fetch(`${URL}/ers_user/${id}`)
@@ -48,7 +38,6 @@ function populateReimbursement(ers_reimbursement) {
                 return reimb.json();
             })
             .then(data => {
-                console.log(data);
             
             cell.innerHTML = (data.firstName + " " + data.lastName);
               return cell; 
@@ -61,10 +50,6 @@ function populateReimbursement(ers_reimbursement) {
     }
           
 }
-
-
-
-
 
 function getDateTime(timestamp) {
     if(timestamp===null){
@@ -86,42 +71,6 @@ function getDateTime(timestamp) {
     return format;        
     };
     
-
-
-    // function updateStatus(id, status) {
-
-    //     var stat = {
-    //         id : id,
-    //         statusId :status
-    //     }
-              
-    //     fetch(`${URL}/reimbursement/update`,{
-    //         method = 'put',
-    //         body: JSON.stringify(reimb)
-
-    //     })
-    //     .then(response => response.json())
-    //     .then(data => {
-    //         console.log(data);
-
-    //         cell.innerHTML = (data.statusId);
-    //           return cell; 
-    //     })
-    //     .catch((error) => {
-    //         console.error('Error:' , error);
-    //     })
-               
-
-    // }    
-    
-
-
-//--------------------
-
-const URL = 'http://34.67.71.40:7000';
-
-
-//Refactor the above AJAX with fesh and promises
 
 (()=>{
 
@@ -208,50 +157,39 @@ function populateUser(ers_user) {
     .then((data) => console.log(data));
 })();
 
-    
-
-
-
-//-----------------------------
-
-let updateBtn = document.getElementById("updatebtn");
-updateBtn.addEventListener("submit", updateStatus);
-
+let update = document.getElementById('update-form');
+update.addEventListener("submit",updateStatus)
 
 function updateStatus(event){
     event.preventDefault();
-    
-    let resolver = uid;
-    let statusId = 2;
-    
+
+    let resolver = 2;//changed to uid when connected with the rest of the pages
+    let statusId = document.getElementById('reimb-status').value;
+    let id = document.getElementById('reimb-id').value;
 
     let reimbursementObj = {
-        id:23,
-        amount:null,
-        submitted:null,
-        resolved:null,
-        description:null,
-        author:null,
+        id,
+        amount:"0",
+        submitted:"0",
+        resolved:"0",
+        description:"0",
+        author:"0",
         resolver,
         statusId,
-        typeId:null
+        typeId:"0"
     };
 
     console.log(reimbursementObj);
 
-    fetch(`${URL}/reimbursement/update`,{
+    fetch(`${URL}/reimbursement/update`, {
         method: 'put',
+        mode: 'cors',
         body: JSON.stringify(reimbursementObj)
-    }).then(response => response.json())
+    })
     .then(data => {
-        console.log(data);
         //reload the page
     })
     .catch((error)=>{
         console.error('Error: ',error);
     })
 }
-
-
-    
-    

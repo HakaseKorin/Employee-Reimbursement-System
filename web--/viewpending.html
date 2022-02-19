@@ -3,7 +3,6 @@
     <head>
         <title>Reimbursement request page</title>
         <meta charset="UTF-8">
-        <meta http-equiv="refresh" content="30">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="styles_manager.css">
        
@@ -36,6 +35,7 @@
           <caption> Reimbursement Pending List</caption>
           <thead id="thead">
             <tr>
+              <th>#</th>
               <th>Reimbursement Type</th>
               <th>Reimbursement Amount</th>
               <th>Reimbursement Description</th> 
@@ -43,27 +43,24 @@
               <th>Status</th> 
               <th>Request Date</th>
               <th>Approved Date</th>
-              <th input type= "button" onclick = updateStatus() >Actions</th>                 
             </tr>
           </thead>
           <tbody id="tbody" >
                                                 
           </tbody>
         </table>
-             
        </div>
-
-       <div>
-         <button type="submit" id="updatebtn">UpdateButton</button>
-       </div>
-
          
-        <div id="container">
-
-        </div>
+       <form id="update-form">
+         <label for="">Reimbursement #</label>
+         <input type="number" id="reimb-id">
+         <select name="reimb-status" id="reimb-status">
+           <option value="2">Accept</option>
+           <option value="3">Reject</option>
+         </select>
+         <button type="submit">submit</button>
+       </form>
 
         <script src="viewpending.js"></script>
-        <script src="managerupdate.js"></script>
-
     </body>
 </html>
