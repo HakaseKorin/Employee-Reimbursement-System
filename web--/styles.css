@@ -25,46 +25,6 @@
   font-size: 17px;
 }
 
-/*
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-size: 16px;
-  border: none;
-  outline: none;
-  color:white;
-  padding: 14px 16px;
-  background-color: inherit;
-  font-family: inherit;
-  margin:0%;
-
-}
-
-.topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #ddd;
-  color: black;
-}
-
-.dropdown-content a {
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-*/
 
 .topnav a.active {
   background-color: #0704aa;
@@ -200,4 +160,43 @@ a {
 .signin {
   background-color: #f1f1f1;
   text-align: center;
+}
+
+.footer {
+  padding: 20px;
+  text-align: center;
+  background-color: rgb(235, 231, 231);
+  /* margin-top: 20%; */
+}
+nav {
+  float: left;
+  width: 20%;
+  height: 600px; 
+  background: rgb(180, 205, 228);
+  padding: 14px 20px;
+  text-decoration-color:none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+    
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: auto;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 80%;
+  background-color: #f1f1f1;
+  height: 600px; 
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
 }

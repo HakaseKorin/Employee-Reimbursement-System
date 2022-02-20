@@ -33,9 +33,7 @@ function populateReimbursement(ers_reimbursement) {
         cell7.innerHTML = `${reimb.resolver}`;
         var cell8 = row.insertCell(7);
         cell8.innerHTML = `${getDateTime(reimb.resolved)}`;
-        var cell9 = row.insertCell(8);
-        cell9.innerHTML = `<a>Accepted</a>   
-                           <a>Rejected</a>`;
+        
         
         cell4 = addUser(cell4, reimb.author);
         cell7 = addUser(cell7, reimb.resolver);

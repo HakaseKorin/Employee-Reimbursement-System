@@ -19,7 +19,7 @@
   float: left;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 14px;
+  padding: 14px 16px;
   text-decoration: none;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 17px;
@@ -43,7 +43,6 @@
   margin-left: 25%;
   margin-right: 25%;
 }
-
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -72,28 +71,11 @@ hr {
   background-color: slateblue;
   color: white;
   padding: 14px 20px;
-  margin: 0px 0;
+  margin: 8px 0;
   border: none;
   cursor: pointer;
-  width: 20px;
+  width: 100%;
   opacity: 0.9;
-}
-
-.submit {
-  background-color: slateblue;
-  color: white;
-  padding: 5px 10px;
-  margin: 0px 0;
-  border: none;
-  cursor: pointer;
-  width: 100px;
-  opacity: 0.9;
-}
-
-.update-reimb {
-  align-items: center;
-  margin-right: 150px;
-  position:relative;
 }
 
 .button:hover {
@@ -102,21 +84,17 @@ hr {
 
 /*extra styles for cancel button*/
 
-.submitbtn {
+.registerbtn {
   padding: 14px 20px;
   background-color: slateblue;
-  color: #ddd;
 }
 
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
+
 
 /*Float cancel and registration buttons and add an equal width*/
-.cancelbtn, .submitbtn {
-  float: left;
-  width: 20%;
+.registerbtn {
+  float: right;
+  width: 30%;
 }
 
 /*Clear floats*/
@@ -143,45 +121,30 @@ hr {
 }
 
 .table {
-  width:90%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-collapse: collapse;
   font-family: 'Quicksand', sans-serif;
   overflow: hidden;
-  border-collapse: collapse;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
- 
- 
-  
+  font-weight: bold;
 }
 
 .table thead th {
-  background-color: rgb(235, 229, 228);
-  color: black;
+  background-color: #009578;
+  color: #ffff;
+}
+
+.table td,
+.table th {
   padding: 10px 20px;
 }
 
-.table td, th {
-  width:250px;
-  padding-left: 5px;
-  padding-right:5px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border: 1px solid black;
-  border-collapse: collapse;
-  font-size: small;
-}
-
-.table tbody tr:nth-child(even) {
-  background: rgba(226, 232, 236, 0.933);
-  border-bottom: 1px solid #ddd;
-  
+.table tbody tr:nth-of-type(even) {
+  background: #eeee;
 }
 
 .table tbody tr:last-of-type {
-  border-bottom: 1px solid #5896d1;
+  border-bottom: 2px solid #009578;
 }
-
 
 
 
@@ -199,6 +162,38 @@ a {
 .footer {
   padding: 20px;
   text-align: center;
-  background: #ddd;
-  margin-top: 20px;
+  background-color: rgb(235, 231, 231);
+  /* margin-top: 20%; */
+}
+nav {
+  float: left;
+  width: 20%;
+  height: 600px; 
+  background: rgb(180, 205, 228);
+  padding: 14px 20px;
+  text-decoration-color:none;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+    
+}
+
+/* Style the list inside the menu */
+nav ul {
+  list-style-type: none;
+  padding: auto;
+}
+
+article {
+  float: left;
+  padding: 20px;
+  width: 80%;
+  background-color: #f1f1f1;
+  height: 600px; 
+}
+
+/* Clear floats after the columns */
+section::after {
+  content: "";
+  display: table;
+  clear: both;
 }

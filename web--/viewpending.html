@@ -18,6 +18,7 @@
         <a href="managerindex.html" target="_parent">View All</a>
         <a href="viewpending.html" target="_parent">View Pending</a>
         <a href="viewresolved.html" target="_parent">View Resolved</a>
+        <a href="manager-viewemployees.html" target="_parent">Employees List</a>
           <div class="topnav-right">
             <a href="#search">Search</a>
             <a href="login.html" target="_parent">Login</a>
@@ -35,7 +36,7 @@
           <caption> Reimbursement Pending List</caption>
           <thead id="thead">
             <tr>
-              <th>#</th>
+              <th>Reimbursement ID</th>
               <th>Reimbursement Type</th>
               <th>Reimbursement Amount</th>
               <th>Reimbursement Description</th> 
@@ -50,17 +51,18 @@
           </tbody>
         </table>
        </div>
-         
-       <form id="update-form">
-         <label for="">Reimbursement #</label>
-         <input type="number" id="reimb-id">
-         <select name="reimb-status" id="reimb-status">
-           <option value="2">Accept</option>
-           <option value="3">Reject</option>
-         </select>
-         <button type="submit">submit</button>
-       </form>
-
+         <hr>
+         <container id="update-reimb">
+           <form id="update-form">
+              <label for="" id="update-label">Update Status :</label>
+              <input type="number" id="reimb-id">
+              <select name="reimb-status" id="reimb-status">
+              <option value="2">Accept</option>
+              <option value="3">Reject</option>
+              </select>
+              <button class="submit" type="submit">Submit</button>
+           </form>
+        </container>
         <script src="viewpending.js"></script>
     </body>
 </html>
