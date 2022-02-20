@@ -34,6 +34,7 @@ function submitForm(event){
     }).then(response => response.json())
     .then(data => {
         console.log(data);
+        location.assign();
         //send back to employee-reimbursement to see that the new reimbursement request as been created
     })
     .catch((error)=>{

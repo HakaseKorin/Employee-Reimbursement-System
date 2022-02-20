@@ -4,8 +4,19 @@ let uid = window.sessionStorage.getItem("id");
 let reimbursement =  document.getElementById('reimbursement-form');
 reimbursement.addEventListener("submit", submitForm);
 
+function confimSubmission(){
+    if(window.confirm('Submit Reimbursement?')){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function submitForm(event){
     event.preventDefault();
+    if(!confimSubmission()){
+        return;
+    }
 
     let amount = document.getElementById('amount').value;
     let description = document.getElementById('description').value;
@@ -31,7 +42,7 @@ function submitForm(event){
     }).then(response => response.json())
     .then(data => {
         console.log(data);
-        //send back to employee-reimbursement to see that the new reimbursement request as been created
+        location.assign('employee-reimbursement.html');
     })
     .catch((error)=>{
         console.error('Error: ',error);

@@ -8,7 +8,7 @@
         
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#">RMS</a>
+              <a class="navbar-brand" href="#">KHAR-RMS</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -24,21 +24,30 @@
               </div>
             </div>
           </nav>
-
-        <p id="view-pending">View by Pending</p>
-        <p id="view-resolved">View by Resolved</p>
-        <table id="reimbursement-table">
-            <tr>
-                <th>Type</th>
-                <th>Submission</th>
-                <th>Resolved</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Submitted by</th>
-                <th>Reviewed by</th>
-                <th>Status</th>
-            </tr>
-        </table>
+          <p class="fs-2 text-center">Reimbursements</p>
+          <hr>
+          <div class="text-center">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn btn-outline-secondary" id="view-all">All</button>
+              <button type="button" class="btn btn-outline-secondary" id="view-pending">Pending</button>
+              <button type="button" class="btn btn-outline-secondary" id="view-resolved">Resolved</button>
+            </div>
+            <table id="reimbursement-table" class="table table-striped" style="table-layout:fixed">
+              <thead>
+                <tr>
+                  <th class="col">Type</th>
+                  <th class="col">Submission</th>
+                  <th class="col">Resolved</th>
+                  <th class="col">Description</th>
+                  <th class="col">Amount</th>
+                  <th class="col">Submitted by</th>
+                  <th class="col">Reviewed by</th>
+                  <th class="col">Status</th>
+              </tr>
+              </thead>
+              <tbody id="table-body"></tbody>
+          </table>
+          </div>
         <script src="employee-reimbursement.js"></script>
     </body>
 </html>

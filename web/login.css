@@ -51,6 +51,10 @@ button:hover {
   padding: 16px;
 }
 
+#login-err-msg {
+  color: rgb(201, 33, 33);
+}
+
 /* The Modal (background)*/
 /*.login {
   display: none; /* Hidden by default */

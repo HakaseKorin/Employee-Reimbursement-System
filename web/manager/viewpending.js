@@ -187,6 +187,7 @@ function updateStatus(event){
         body: JSON.stringify(reimbursementObj)
     })
     .then(data => {
+        location.reload();
         //reload the page
     })
     .catch((error)=>{

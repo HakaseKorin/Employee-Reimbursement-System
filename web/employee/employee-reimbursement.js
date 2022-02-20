@@ -20,7 +20,8 @@ function getDateTime(timestamp){
         return "PENDING";
     }
     var dateTime = new Date(timestamp)
-    return dateTime.toLocaleString('en-GB',{timeZone: 'UTC'});
+    var options = {year: 'numeric', month: 'long', day: 'numeric'};
+    return dateTime.toLocaleString('en-US', options);
 }
 
 function getStatus(statusId){
@@ -45,34 +46,51 @@ function getType(typeId){
 let arrPending = document.getElementById('view-pending');
 arrPending.addEventListener('click',viewPending);
 
+let arrResolved = document.getElementById('view-resolved');
+arrResolved.addEventListener('click',viewResolved);
+
+let arrAll = document.getElementById('view-all');
+arrAll.addEventListener('click',viewAll);
+
 function viewPending(){
-    //hide all rows that contain a pending
     var rows, x, pending;
-    pending = document.createElement('td');
-    pending.innerHTML = 'PENDING';
-    console.log(pending);
     rows = reimbursementTable.rows;
-    console.log(rows);
     for(i=1;i<(rows.length);i++){
         x = rows[i].getElementsByTagName("TD")[7];
-        console.log(x);
-        if(x == 'PENDING'){
+        if(x.innerHTML === 'PENDING'){
             reimbursementTable.rows[i].style.display = 'table-row';
         }else{
             reimbursementTable.rows[i].style.display = 'none';
-
         }
     }
 }
 
 function viewResolved(){
-    //hide all rows that dont contain pending
+    var rows, x, pending;
+    rows = reimbursementTable.rows;
+    for(i=1;i<(rows.length);i++){
+        x = rows[i].getElementsByTagName("TD")[7];
+        if(x.innerHTML !== 'PENDING'){
+            reimbursementTable.rows[i].style.display = 'table-row';
+        }else{
+            reimbursementTable.rows[i].style.display = 'none';
+        }
+    }
 }
+
+function viewAll(){
+    var rows, x, pending;
+    rows = reimbursementTable.rows;
+    for(i=1;i<(rows.length);i++){
+        reimbursementTable.rows[i].style.display = 'table-row';
+    }
+}
+
+let tableBody = document.getElementById('table-body');
 
 function appendTable(results){
     for(var result of results){
-
-        var row = reimbursementTable.insertRow();
+        var row = tableBody.insertRow();
 
         var typeCell = row.insertCell();
         var submitCell = row.insertCell();
