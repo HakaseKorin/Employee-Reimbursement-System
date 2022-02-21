@@ -142,7 +142,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
 
     @Override
     public List<Reimbursement> getAllResolved() {
-        String sql = "select * from \"ProjectOne\".ers_reimbursement where reimb_status_id = 2";
+        String sql = "select * from \"ProjectOne\".ers_reimbursement where reimb_status_id != 1";
         List<Reimbursement> list = new ArrayList<>();
 
         try(Connection c = ConnectionUtil.getConnection();
@@ -255,7 +255,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao{
     @Override
     public List<Reimbursement> getByAuthorAndResolved(int sid) {
         String sql = "select * from \"ProjectOne\".ers_reimbursement where reimb_author = ?" +
-                     " and where reimb_status_id = 2";
+                     " and where reimb_status_id != 1";
         List<Reimbursement> list = new ArrayList<>();
 
         try(Connection c = ConnectionUtil.getConnection();
