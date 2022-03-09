@@ -1,4 +1,4 @@
-# PROJECT NAME
+# PROJECT ONE
 
 ## Project Description
 
